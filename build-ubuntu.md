@@ -12,7 +12,7 @@ This should install boost exactly to where the installation script is looking fo
 we need to tell `cmake` to use the Boost we just built, instead of using the system-wide Boost:
 
     cd ~/src/graphene
-    [ -e ./doc/build-ubuntu.md ] && sh -c 'cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Debug .'
+    [ -e ./docs/build-ubuntu.md ] && sh -c 'cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Debug .'
 
 If all goes well, you should see the correct Boost version in the output messages to the above command.
 
