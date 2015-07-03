@@ -13,8 +13,9 @@ cd programs/witness_node
 ./witness_node --rpc-endpoint --enable-stale-production --witness-id \""1.6.0"\" \""1.6.1"\" \""1.6.2"\" \""1.6.3"\" \""1.6.4"\"  \""1.6.5"\" \""1.6.6"\" \""1.6.7"\" \""1.6.8"\" \""1.6.9"\" 
 ````
 The initial genesis state has ten pre-configured delegates (1.6.0-9) that all
-use the same private key to sign their blocks.  Launching `witness_node` this
-way allows you to act as all ten delegates.
+use the same private key to sign their blocks, and the witness node has the
+private keys for these initial delgates built in..  Launching `witness_node` 
+this way allows you to act as all ten delegates.
 
 Now, in a second window, launch a `cli_wallet` process to interact with the
 network.
@@ -40,8 +41,13 @@ To create a new account, you will need to start with an existing account with
 some of the CORE asset that will pay the transaction fee registering your new
 account.  The account paying this fee will be the *Registrar*.
 
-In the initial genesis state, the account `nathan` has all of the money, so we
-will use it as the registrar.
+In the initial genesis state, there are about a dozen pre-existing accounts.
+We use the 'nathan' account as a general purpose test account, and its private
+key is printed at witness startup to allow us to import it here:
+
+**NOTE**: Right now there is a bug? that prevents us from claiming the balance if
+execute the `import_key` command below, so do this step *after* the `import_balance`
+command that comes next.
 ```
 # first, import the private key to take ownership of the 'nathan' account
 unlocked >>> import_key "nathan" 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
@@ -52,8 +58,35 @@ unlocked >>> list_my_accounts
     "name": "nathan",
     ...
 ]
+unlocked >>> list_account_balances nathan
+unlocked >>>
+```
+We control the account now, but there is no money in the account yet.  In the genesis 
+state, none of the accounts have balances in them.  In the first BitShares network, 
+accounts were less tightly coupled to balances.  Balances were associated with 
+public keys, and an account could have hundreds of public keys with balances (or,
+conversely, public keys with balances could exist without any account associated
+with them).  When the real network launches, each of the public keys with a balance
+will be converted into a *balance object* in Graphene, and they will not be associated
+with any account until their owner publishes a transaction claiming the balance.
+
+In the test genesis state, there is only one balance object and it owns 100% of the 
+funds in the system.  Let's import that here:
+```
+unlocked >>> import_balance nathan [5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3] true
+unlocked >>> list_account_balances nathan
+10000000000 CORE
+```
+**NOTE** now you can execute the `import_key "nathan" 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3` command, and verify that you control the account with `list_my_accounts`.
+
+So we now have an account to act as registrar and it has plenty of funds to pay
+the registration key for new accounts.  Only lifetime (prime?) members are allowed
+to register accounts, so we must upgrade `nathan` first.  Then, go ahead and create
+our test account named *my-account*:
+```
 # before nathan can create other accounts, we need to upgrade it to a prime member.
 unlocked >>> upgrade_account nathan true
+# register our account.  we list nathan as both the referrer and registrar.
 unlocked >>> create_account_with_brain_key "this is the brain key for my account" my-account nathan nathan true
 ```
 Like most methods in the wallet, `create_account_with_brain_key`'s last
@@ -66,6 +99,9 @@ and collect the other signatures offline, or it could be used to construct a
 transaction in a offline cold wallet that you could put on a flash drive and
 broadcast from a machine connected to the network.  Here, we'll always pass
 `true` for the `broadcast` parameter.
+
+If you were to execute `list_my_accounts` now, you would see that you 
+control both `nathan` and `my-account`.
 
 ### Transferring Currency
 Your newly-created account doesn't have any funds in it yet, the `nathan`
