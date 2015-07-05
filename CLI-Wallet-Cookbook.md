@@ -246,8 +246,8 @@ unlocked >>> create_delegate my-account "http://delegate.baz.com/" true
 Now that we're registered as a delegate, we should vote e should vote our delegate 
 in.  Vote all of the shares in both `my-account` and `nathan` in favor of your new delegate.
 ```
-unlocked >>> vote_for_witness my-account my-account true true
-unlocked >>> vote_for_witness nathan my-account true true
+unlocked >>> vote_for_delegate my-account my-account true true
+unlocked >>> vote_for_delegate nathan my-account true true
 ```
 Like with witnesses, you will have to wait for the next maintenance interval before
 the delegate becomes active.  Get the id of the delegate with:
