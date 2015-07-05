@@ -45,9 +45,6 @@ In the initial genesis state, there are about a dozen pre-existing accounts.
 We use the 'nathan' account as a general purpose test account, and its private
 key is printed at witness startup to allow us to import it here:
 
-**NOTE**: Right now there is a bug? that prevents us from claiming the balance if
-execute the `import_key` command below, so do this step *after* the `import_balance`
-command that comes next.
 ```
 # first, import the private key to take ownership of the 'nathan' account
 unlocked >>> import_key "nathan" 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
@@ -77,8 +74,6 @@ unlocked >>> import_balance nathan [5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP7
 unlocked >>> list_account_balances nathan
 10000000000 CORE
 ```
-**NOTE** now you can execute the `import_key "nathan" 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3` command, and verify that you control the account with `list_my_accounts`.
-
 So we now have an account to act as registrar and it has plenty of funds to pay
 the registration key for new accounts.  Only lifetime (prime?) members are allowed
 to register accounts, so we must upgrade `nathan` first.  Then, go ahead and create
