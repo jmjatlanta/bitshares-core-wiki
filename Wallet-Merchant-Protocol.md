@@ -22,7 +22,9 @@ To request a payment, the merchant needs to pass the following JSON object to ht
 
 When the wallet receives this request it will present the user with a form that allows them to select which account they wish to pay with along with a total due.  If any CUSTOM fields are specified the user will be able to edit the line item, otherwise it will be pre-filled. 
 
-After the user creates the transaction, signs it, and gets confirmation that the transaction has been included in the blockchain then the `callback` url will be called with signed transaction.
+After the user creates the transaction, signs it, and gets confirmation that the transaction has been included in the blockchain then the `callback` url will be called with `signed transaction` as a URL encoded JSON object.
+
+https://merchant.org/complete?trx=... 
 
 The merchant will then check with the blockchain to see if the transaction has been included and once that confirmation is complete then the merchant is free to ship or enable downloads.
 
