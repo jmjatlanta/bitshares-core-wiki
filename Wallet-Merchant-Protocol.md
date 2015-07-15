@@ -24,7 +24,22 @@ When the wallet receives this request it will present the user with a form that 
 
 After the user creates the transaction, signs it, and gets confirmation that the transaction has been included in the blockchain then the `callback` url will be called with `signed transaction` as a URL encoded JSON object.
 
-https://merchant.org/complete?trx=... 
+https://merchant.org/complete?block_num=5,trx_num=3,trx=... 
 
-The merchant will then check with the blockchain to see if the transaction has been included and once that confirmation is complete then the merchant is free to ship or enable downloads.
+The merchant will then check with the blockchain to see if the transaction has been included and once that confirmation is complete then the merchant is free to ship or enable downloads.  
+
+To check to see if the transaction has been included the merchant will use the HTTP POST api:
+```
+POST /rpc HTTP/1.1
+content-type:application/json
+host: https://wallet.org
+content-length:100
+
+{  "id":1, "method": "get_transaction","params" : [5,3] }
+```
+
+If the response of this request should match the value of `trx` provided in the `https://merchant.org/complete?trx=...` callback.
+
+The merchant should verify that all of the payment details match the expected value and be sure to protect against "replay" attacks by verifying that the invoice number included in the memo is unique and matches the expected value. 
+
 
