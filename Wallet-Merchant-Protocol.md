@@ -11,7 +11,7 @@ To request a payment, the merchant needs to pass the following JSON object to ht
    "memo" : "Invoice #1234",
    "line_items" : [
         { "label" : "Something to Buy", "quantity": 1, "price" : "1000.00 SYMBOL" },
-        { "label" : "Something to Buy", "quantity": 10, "price" : "1000.00 SYMBOL" },
+        { "label" : "10 things to Buy", "quantity": 10, "price" : "1000.00 SYMBOL" },
         { "label" : "User Specified Price", "quantity": 1, "price" : "CUSTOM SYMBOL" },
         { "label" : "User Asset and Price", "quantity": 1, "price" : "CUSTOM" }
     ],
