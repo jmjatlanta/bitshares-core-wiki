@@ -41,7 +41,7 @@ Using the [bs58](http://cryptocoinjs.com/modules/misc/bs58/) library encode the 
 
 Once the Base58 data is known, it can be passed to the wallet with the following URL:
 
-https://wallet.org#invoice-BASE58BLOB
+https://wallet.org/#/invoice/BASE58BLOB
 
 ## Step 5: Receive Callback from Wallet
 
