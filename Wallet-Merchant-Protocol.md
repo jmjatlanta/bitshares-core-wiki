@@ -27,7 +27,7 @@ This invoice provides all of the data needed by the wallet to display an invoice
     "callback" : "https://merchant.org/complete"
 }
 ```
- By itself this data is 579 characters which after URL encoding is 916 character limit and therefore cannot be passed via a URL.
+ By itself this data is 579 characters which after URL encoding is 916 characters, with a 2000 character limit this approach doesn't scale as well as we would like.
 
 ## Step 2: Compress your JSON representation
 
