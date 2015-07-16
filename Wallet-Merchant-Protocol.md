@@ -10,17 +10,17 @@ To request a payment, the merchant needs to pass the following JSON object to ht
    "to_label" : "Merchant Name",
    "memo" : "Invoice #1234",
    "line_items" : [
-        { "label" : "Something to Buy", "price" : "1000.00 SYMBOL" },
-        { "label" : "Something to Buy", "price" : "1000.00 SYMBOL" },
-        { "label" : "User Specified Price", "price" : "CUSTOM SYMBOL" },
-        { "label" : "User Asset and Price", "price" : "CUSTOM" }
+        { "label" : "Something to Buy", "quantity": 1, "price" : "1000.00 SYMBOL" },
+        { "label" : "Something to Buy", "quantity": 10, "price" : "1000.00 SYMBOL" },
+        { "label" : "User Specified Price", "quantity": 1, "price" : "CUSTOM SYMBOL" },
+        { "label" : "User Asset and Price", "quantity": 1, "price" : "CUSTOM" }
     ],
     "note" : "Something the merchant wants to say to the user",
     "callback" : "https://merchant.org/complete"
 }
 ```
 
-When the wallet receives this request it will present the user with a form that allows them to select which account they wish to pay with along with a total due.  If any CUSTOM fields are specified the user will be able to edit the line item, otherwise it will be pre-filled. 
+When the wallet receives this request it will present the user with a form that allows them to select which account they wish to pay with along with a total due.  The total due will be calculated as the sum of `quantity` * `price` for all `line_tiems`. If any CUSTOM fields are specified the user will be able to edit the line item, otherwise it will be pre-filled. 
 
 After the user creates the transaction, signs it, and gets confirmation that the transaction has been included in the blockchain then the `callback` url will be called with `signed transaction` as a URL encoded JSON object.
 
