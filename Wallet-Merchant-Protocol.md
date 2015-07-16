@@ -43,6 +43,15 @@ Once the Base58 data is known, it can be passed to the wallet with the following
 
 https://wallet.org#invoice-BASE58BLOB
 
+## Step 5: Receive Callback from Wallet
+
+After the wallet has signed a transaction, broadcast it, and gotten confirmation from https://wallet.org that the transaction was included in 'block 12345` as `transaction 4` wallet will direct the user to `https://merchant.org/complete?block=12345&trx=4`
+
+The merchant will then request that transaction from https://wallet.org/api?block=12345&trx=4 which will respond with the transaction that was included in the blockchain.   The merchant will decrypt the memo from the transaction and use memo content to confirm payment for the invoice.  
+
+## Step 6: Payment Complete 
+
+At this point the user has successfully made a payment and the merchant has verified the payment has been received without having to maintain a full node.  
 
 
-  
+ 
