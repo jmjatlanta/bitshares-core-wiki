@@ -2,7 +2,15 @@
 
 The purpose of this protocol is to enable a merchant to request payment from the user via a hosted wallet provider or via a browser plugin.  We will assume that the wallet is hosted at https://wallet.org and that the merchant is hosted at https://merchant.org.
 
-To request a payment, the merchant needs to pass the following JSON object to https://wallet.org/invoice?args=...
+# Privacy Concerns
+
+The goal of this protocol is to maintain user and merchant privacy from the wallet provider which should never have direct access to the invoice data.
+
+To securely pass data from https://merchant.org to the javascript wallet hosted at https://wallet.org, the data will have to be passed after the "#".  Assuming the wallet provider is not serving up pages designed to compromise your privacy, only your web browser will have access to the invoice data.  
+
+## Step 1: Define your Invoice via JSON 
+
+This invoice provides all of the data needed by the wallet to display an invoice to the user. 
 
 ```
 {
@@ -19,27 +27,22 @@ To request a payment, the merchant needs to pass the following JSON object to ht
     "callback" : "https://merchant.org/complete"
 }
 ```
+ By itself this data is 579 characters which after URL encoding is 916 character limit and therefore cannot be passed via a URL.
 
-When the wallet receives this request it will present the user with a form that allows them to select which account they wish to pay with along with a total due.  The total due will be calculated as the sum of `quantity` * `price` for all `line_tiems`. If any CUSTOM fields are specified the user will be able to edit the line item, otherwise it will be pre-filled. 
+## Step 2: Compress your JSON representation
 
-After the user creates the transaction, signs it, and gets confirmation that the transaction has been included in the blockchain then the `callback` url will be called with `signed transaction` as a URL encoded JSON object.
+Using `[LZMA-JS](https://github.com/nmrugg/LZMA-JS/)` library to compress the JSON into a binary array.  This will be the most compact form of the data.  After running the compression the example JSON was reduced to 281 bytes from 579 bytes.
 
-https://merchant.org/complete?block_num=5,trx_num=3,trx=... 
+## Step 3: Convert to Base58 
 
-The merchant will then check with the blockchain to see if the transaction has been included and once that confirmation is complete then the merchant is free to ship or enable downloads.  
+Using the `[bs58](http://cryptocoinjs.com/modules/misc/bs58/)` library encode the compressed data in base58.  Base58 is URL friendly and size efficient.  After converting to base58 the string will be 385 characters which can easily be passed in a URL and easily support much larger invoices. 
 
-To check to see if the transaction has been included the merchant will use the HTTP POST api:
-```
-POST /rpc HTTP/1.1
-content-type:application/json
-host: https://wallet.org
-content-length:100
+## Step 4: Pass to Wallet
 
-{  "id":1, "method": "get_transaction","params" : [5,3] }
-```
+Once the Base58 data is known, it can be passed to the wallet with the following URL:
 
-If the response of this request should match the value of `trx` provided in the `https://merchant.org/complete?trx=...` callback.
-
-The merchant should verify that all of the payment details match the expected value and be sure to protect against "replay" attacks by verifying that the invoice number included in the memo is unique and matches the expected value. 
+https://wallet.org#invoice-BASE58BLOB
 
 
+
+  
