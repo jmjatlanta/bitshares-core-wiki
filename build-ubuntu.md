@@ -2,11 +2,13 @@
 The Boost which ships with Ubuntu 14.04 LTS is too old.  You need to download the Boost tarball for Boost 1.57.0
 (Note, 1.58.0 requires C++14 and will not build on Ubuntu LTS; this requirement was an accident, see ).  Build Boost as follows:
 
+    sudo apt-get update
+    sudo apt-get install autotools-dev build-essential g++ libbz2-dev libicu-dev python-dev
     wget -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'
     tar -xf download
     cd boost_1_57_0/
     ./bootstrap.sh --prefix=/usr/local/
-    ./b2 install
+    sudo ./b2 install
 
 This should install boost exactly to where the installation script is looking for it. If not, then
 we need to tell `cmake` to use the Boost we just built, instead of using the system-wide Boost:
