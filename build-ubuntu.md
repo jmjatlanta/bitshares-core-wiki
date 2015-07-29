@@ -1,3 +1,6 @@
+The following dependencies were necessary for a clean install of Ubuntu 15.04:
+
+    sudo apt-get install cmake libdb++-dev libdb-dev libssl-dev openssl libreadline-dev autoconf libtool
 
 The Boost which ships with Ubuntu 14.04 LTS is too old.  You need to download the Boost tarball for Boost 1.57.0
 (Note, 1.58.0 requires C++14 and will not build on Ubuntu LTS; this requirement was an accident, see ).  Build Boost as follows:
