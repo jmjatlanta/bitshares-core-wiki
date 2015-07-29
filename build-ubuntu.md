@@ -1,14 +1,15 @@
 # Ubuntu 15.04 Build and Install Instructions
+The following dependencies were necessary for a clean install of Ubuntu 15.04:
 
-Before you can build Graphene you must first ensure all of the proper dependencies are installed.
-
-    sudo apt-get install libssl-dev gcc g++ gcc-4.9 g++-4.9 cmake make python-dev git libbz2-dev autoconf automake
+    sudo apt-get install gcc-4.9 g++-4.9 cmake make libbz2-dev libdb++-dev libdb-dev libssl-dev openssl libreadline-dev autoconf libtool git
 
 ## Build Boost 1.57.0 
 
 The Boost which ships with Ubuntu 15.04 is too old.  You need to download the Boost tarball for Boost 1.57.0
 (Note, 1.58.0 requires C++14 and will not build on Ubuntu LTS; this requirement was an accident, see ).  
 
+    sudo apt-get update
+    sudo apt-get install autotools-dev build-essential g++ libbz2-dev libicu-dev python-dev
     wget -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'
     tar -xf download
     rm download
