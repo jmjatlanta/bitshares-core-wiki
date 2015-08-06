@@ -1,8 +1,3 @@
----
-title: Howto become an active witness in BitShares 2.0
-author: Fabian <xeroc> Schuh
----
-
 This document serves as an introduction on how to become an actively block
 producing witness in in the BitShares2.0 network. We will have to import an
 existing account from the BitShares 0.9 network and add some initial funds for
