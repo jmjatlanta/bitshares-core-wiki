@@ -1,12 +1,12 @@
-# Ubuntu 15.04 Build and Install Instructions
-The following dependencies were necessary for a clean install of Ubuntu 15.04:
+# Ubuntu 14.04 LTS Build and Install Instructions
+The following dependencies were necessary for a clean install of Ubuntu 14.04 LTS:
 
     sudo apt-get install gcc-4.9 g++-4.9 cmake make libbz2-dev libdb++-dev libdb-dev libssl-dev openssl libreadline-dev autoconf libtool git
 
 ## Build Boost 1.57.0 
 
 The Boost which ships with Ubuntu 15.04 is too old.  You need to download the Boost tarball for Boost 1.57.0
-(Note, 1.58.0 requires C++14 and will not build on Ubuntu LTS; this requirement was an accident, see ).  
+(Note, 1.58.0 requires C++14 and will not build on Ubuntu LTS; this requirement was an accident, see [this mailing list post](http://boost.2283326.n4.nabble.com/1-58-1-bugfix-release-necessary-td4674686.html)).
 
     BOOST_ROOT=$HOME/opt/boost_1_57_0
     sudo apt-get update
@@ -46,7 +46,7 @@ Next we need to tell `cmake` where to find them.  If you have ever run CMake in 
 To actually run `cmake` we now need the following parameters:
 
     cmake -DCMAKE_PREFIX_PATH="$QT_ROOT" -DCMAKE_MODULE_PATH="$QT_ROOT/lib/cmake/Qt5Core" -DQT_QMAKE_EXECUTABLE="$QT_ROOT/bin/qmake" -DBUILD_QT_GUI=TRUE \
-          -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Debug .
+          -DGRAPHENE_EGENESIS_JSON="$GENESIS_JSON" -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Debug .
 
 ## Build Graphene 
 
