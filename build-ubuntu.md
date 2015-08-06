@@ -8,14 +8,15 @@ The following dependencies were necessary for a clean install of Ubuntu 15.04:
 The Boost which ships with Ubuntu 15.04 is too old.  You need to download the Boost tarball for Boost 1.57.0
 (Note, 1.58.0 requires C++14 and will not build on Ubuntu LTS; this requirement was an accident, see ).  
 
+    BOOST_ROOT=$HOME/opt/boost_1_57_0
     sudo apt-get update
     sudo apt-get install autotools-dev build-essential g++ libbz2-dev libicu-dev python-dev
-    wget -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download'
-    tar -xf download
-    rm download
+    wget -c 'http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.bz2/download' -O boost_1_57_0.tar.bz2
+    [ $( sha256sum boost_1_57_0.tar.bz2 | cut -d ' ' -f 1 ) == "910c8c022a33ccec7f088bd65d4f14b466588dda94ba2124e78b8c57db264967" ] || ( echo 'Corrupt download' ; exit 1 )
+    tar xjf boost_1_57_0.tar.bz2
     cd boost_1_57_0/
-    ./bootstrap.sh --prefix=/usr/local/
-    sudo ./b2 install
+    ./bootstrap.sh "--prefix=$BOOST_ROOT"
+    ./b2 install
 
 ## Build Graphene 
 
@@ -23,9 +24,8 @@ The Boost which ships with Ubuntu 15.04 is too old.  You need to download the Bo
     git clone https://github.com/cryptonomex/graphene.git
     cd graphene
     git submodule update --init --recursive
-    cmake .
+    cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Debug .
     make 
-
 
 ## Ubuntu 15.04
 Ubuntu 15.04 uses gcc 5, which has the c++11 ABI as default, but the boost libraries were compiled with the cxx11 ABI (this is an issue in many distros). If you get build failures due to abi incompatibilities, just use gcc 4.9
