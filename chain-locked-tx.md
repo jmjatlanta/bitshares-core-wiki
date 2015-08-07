@@ -24,4 +24,4 @@ immediately if the check fails.
 Light wallet functionality
 --------------------------
 
-The light wallet build has been BROKEN by these changes...
+At present, the light wallet simply uses the chain ID specified by its backing full node to sign transactions.
