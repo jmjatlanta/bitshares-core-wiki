@@ -1,13 +1,12 @@
 This document serves as an introduction on how to become an actively block
-producing witness in in the BitShares2.0 network. We will have to import an
-existing account from the BitShares 0.9 network and add some initial funds for
-the witness registration fee. After that, we will create, configure and run a
-witness node.
+producing witness in in the BitShares2.0 network. Please note that there
+currently is no public testnet available, hence, this howto will fail at the
+last few steps. However, we feel that we should inform interested parties about
+how to prepare their machines for participation as witness as soon as possible.
 
-<!--more-->
-
-* TOC
-{:toc}
+We will have to import an existing account from the BitShares 0.9 network and
+add some initial funds for the witness registration fee. After that, we will
+create, configure and run a witness node.
 
 ## Preparations in BitShares 0.9 network
 
@@ -66,6 +65,10 @@ access to the funds in the BitShares 0.9 network. You may loose your money if
 you are not an secure computer!
 
 #### Scripted extraction with Python (requires code audit)
+The following paragraphs will give an alternative (easier) way to dump the
+relevant private keys using a python script. If you are comfortable with the
+description above, you can safely skip the subsequent paragraph.
+
 A Python script located at
 [github](https://github.com/xeroc/bitshares-pytools/blob/master/tools/getbalancekeys.py)
 may help you to retrieve private keys for your balances.
@@ -100,8 +103,8 @@ balance:
     accountC's owner key 5xxxxxxxxxxxxxxxxxxxxxxxxxx<balance wif key>  # 
 
 
-You will only need BTS balances (worth at least $5) and the one of your account
-owner keys in order to become a witness.
+You will only need BTS balances and the one of your account owner keys in order
+to become a witness.
 
 ## BitShares 2.0 network (or Graphene testnet)
 
