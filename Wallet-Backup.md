@@ -38,8 +38,19 @@ To save space on the server, wallet data should be compressed prior to being enc
 
 ## Preventing Abuse 
 
-To prevent abuse, only WALLET_KEYS that belong to accounts with over a MINIMUM VALUE balance will qualify for free backups.  Alternatively, users could pay for the backup service.  
+Any service that allows users to upload arbitrary binary data has the potential to be abused to store data other than wallet backups.  There are several ways of preventing abuse:
 
+1. Require all wallet keys to belong to an account registered on the blockchain
+2. Limit automatic backup to accounts referred by a set of accounts
+3. Limit the frequency of updates to the backup wallet 
+4. Limit the frequency of downloads of the backup wallet 
+5. Limit automatic backup to whitelisted accounts 
+6. Limit automatic backup to accounts with a minimal balance 
+7. Require proof-of-work on every backup
+
+## Limiting Liability 
+
+Account backup should be provided for convenience only, and should not be relied upon as a way to recover your wallet file in all circumstances.  The service provider should have all users waive the right to sue if the provider is unable or unwilling to produce a copy of the backup wallet.  Users should also agree to allow the service provider to publish all backup wallets in a public manner, such as a github repository, and therefore the service provider has no liability for data breaches.  
 
 
 
