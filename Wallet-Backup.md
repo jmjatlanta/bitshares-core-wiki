@@ -36,7 +36,9 @@ When a user does a backup to the server, old versions of the wallet should be sa
 
 To save space on the server, wallet data should be compressed prior to being encrypted.  
 
+## Preventing Abuse 
 
+To prevent abuse, only WALLET_KEYS that belong to accounts with over a MINIMUM VALUE balance will qualify for free backups.  Alternatively, users could pay for the backup service.  
 
 
 
