@@ -12,7 +12,7 @@ This process can be automated as an alternative (or in addition to) downloading 
 
 ## Encrypting the Wallet
 
-Backups are only as secure as the password protecting the encrypted data.  Typical user passwords less than ideal for the purpose of securing a backup, so instead it is preferred to encrypt backups relative to a brain key.  A brainkey is something users are expected to write down and physically store and then keep off of digital devices that may be lost.  
+Backups are only as secure as the password protecting the encrypted data.  Typical user passwords are less than ideal for the purpose of securing a backup, so instead it is preferred to encrypt backups relative to a brain key.  A brainkey is something users are expected to write down and physically store and then keep off of digital devices that may be lost.  
 
 The brainkey can be used to derive a public key.  When a wallet is encrypted a one-time private key is generated and combined with the public brainkey to generate a onetime secret that will serve as the AES password.    
 
