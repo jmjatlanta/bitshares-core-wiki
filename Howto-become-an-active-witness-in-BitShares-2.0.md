@@ -154,7 +154,7 @@ BitShares 2.0:
 
     unlocked >>> import_key <accountname> <owner wif key>
     true
-    unlocked >>> import_balance <accountname> <balance wif key> true
+    unlocked >>> import_balance <accountname> [<balance wif key>] true
     [a transaction in json format]
     unlocked >>> list_my_accounts
     [{
