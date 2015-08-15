@@ -15,7 +15,7 @@ To create a new account, you will need to start with an existing account with
 some of the BTS asset that will pay the transaction fee registering your new
 witness. Get your `<wif>` key from BitShares 0.9 via
 
-    BitShares0.9: >>> wallet_dump_account_key <accountname> "owner_key"
+    BitShares0.9: >>> wallet_dump_account_private_key <accountname> "owner_key"
     "5....."  # the <owner wif key>
 
 ### Extracting balances from BitShares 0.9
