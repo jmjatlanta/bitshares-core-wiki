@@ -35,11 +35,11 @@ all balance ids from an account via:
 
     BitShares0.9: >>> wallet_account_balance_ids <accountname>
     [[
-	"xeroc",[
-	  "BTSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-	  "BTSBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
+    "xeroc",[
+      "BTSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "BTSBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
           ...
-	]
+    ]
       ]
     ]
 
@@ -47,9 +47,9 @@ Each of these balances can be investigated via:
 
     BitShares0.9: >>> blockchain_get_balance BTSAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     ....
-	"asset_id": 0,                                     <- asset_id (0: BTS)
-	"data": {
-	  "owner": "BTSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWNER", <- address
+    "asset_id": 0,                                     <- asset_id (0: BTS)
+    "data": {
+      "owner": "BTSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWNER", <- address
           ...
       "balance": 0,                                        <- balance
       ...
@@ -77,10 +77,10 @@ connection to your BitShares daemon.
 
     $ edit getbalancekeys.py
         [...]
-	config.url    = "http://10.0.0.16:19988/rpc"
-	config.user   = 'rpc-user'
-	config.passwd = 'rpc-password'
-	config.wallet = "default"
+    config.url    = "http://10.0.0.16:19988/rpc"
+    config.user   = 'rpc-user'
+    config.passwd = 'rpc-password'
+    config.wallet = "default"
         [...]
 
 If you don't know what to do with these, you certainly shouldn't run a witness
@@ -124,18 +124,24 @@ and we will now continue with the following steps:
 
 From this point on, we will no longer require interaction with BitShares 0.9.
 
+### Download the genesis block (only for testnet)
+
+For the testnet we need to download the proper genesis block. Eventually, the
+genesis block will be part of the client so that this step will not be required
+for the real network later. The genesis block can be downloaded (here)[https://drive.google.com/open?id=0B_GVo0GoC_v_S3lPOWlUbFJFWTQ].
+
 ### Run the witness as a node in the network
 We first run the witness node without block production and connect it to the P2P
 network with the following command:
 
-    $ programs/witness_node/witness_node -s graphene.bitshares.org:8090 --rpc-endpoint 127.0.0.1:8090
+    $ programs/witness_node/witness_node -s 104.200.28.117:61705 --rpc-endpoint 127.0.0.1:8090 --genesis-json aug-14-test-genesis.json
 
-Ignore all warnings about missing witness ids.
+The address `104.200.28.117` is one of the public seed nodes.
 
 ### Creating a wallet
 We now open up the cli_wallet and connect to our plain and stupid witness node:
 
-    $ programs/cli_wallet/cli_wallet -s ws://176.9.234.167:8090
+    $ programs/cli_wallet/cli_wallet -s ws://127.0.0.1:8090
 
 First thing to do is setting up a password for the newly created wallet prior to
 importing any private keys:
@@ -158,13 +164,16 @@ BitShares 2.0:
     [a transaction in json format]
     unlocked >>> list_my_accounts
     [{
-	"id": "1.2.15",
-	...
-	"name": <accountname>,
-	...
+    "id": "1.2.15",
+    ...
+    "name": <accountname>,
+    ...
     ]
     unlocked >>> list_account_balances <accountname>
     XXXXXXX BTS
+
+Note: Make sure to put the []-brackets around the private key, since the import
+method takes an array of keys.
 
 Since only lifetime members can become witnesses, you must first upgrade to a
 lifetime member. This step costs the lifetime-upgrade fee which will eventually
@@ -190,16 +199,16 @@ will simply be the ten default witnesses:
     unlocked >>> get_global_properties
     ...
       "active_witnesses": [
-	"1.6.0",
-	"1.6.1",
-	"1.6.2",
-	"1.6.3",
-	"1.6.4",
-	"1.6.5",
-	"1.6.6",
-	"1.6.7",
-	"1.6.8",
-	"1.6.9"
+    "1.6.0",
+    "1.6.1",
+    "1.6.2",
+    "1.6.3",
+    "1.6.4",
+    "1.6.5",
+    "1.6.6",
+    "1.6.7",
+    "1.6.8",
+    "1.6.9"
       ],
     ...
 
@@ -209,20 +218,20 @@ will simply be the ten default witnesses:
       "ref_block_prefix": 3692461913,
       "relative_expiration": 3,
       "operations": [[
-	  21,{
-	    "fee": {
-	      "amount": 0,
-	      "asset_id": "1.3.0"
-	    },
-	    "witness_account": "1.2.16",
-	    "url": "url-to-proposal",
-	    "block_signing_key": "PUBLIC KEY",
-	    "initial_secret": "00000000000000000000000000000000000000000000000000000000"
-	  }
-	]
+      21,{
+        "fee": {
+          "amount": 0,
+          "asset_id": "1.3.0"
+        },
+        "witness_account": "1.2.16",
+        "url": "url-to-proposal",
+        "block_signing_key": "PUBLIC KEY",
+        "initial_secret": "00000000000000000000000000000000000000000000000000000000"
+      }
+    ]
       ],
       "signatures": [
-	  "1f2ad5597af2ac4bf7a50f1eef2db49c9c0f7616718776624c2c09a2dd72a0c53a26e8c2bc928f783624c4632924330fc03f08345c8f40b9790efa2e4157184a37"
+      "1f2ad5597af2ac4bf7a50f1eef2db49c9c0f7616718776624c2c09a2dd72a0c53a26e8c2bc928f783624c4632924330fc03f08345c8f40b9790efa2e4157184a37"
       ]
     }
 
@@ -233,15 +242,15 @@ it in.  You can see the current list of active witnesses with
     unlocked >>> get_global_properties
     {
       "active_witnesses": [
-	"1.6.0",
-	"1.6.1",
-	"1.6.2",
-	"1.6.3",
-	"1.6.4",
-	"1.6.5",
-	"1.6.7",
-	"1.6.8",
-	"1.6.9"
+    "1.6.0",
+    "1.6.1",
+    "1.6.2",
+    "1.6.3",
+    "1.6.4",
+    "1.6.5",
+    "1.6.7",
+    "1.6.8",
+    "1.6.9"
       ],
       ...
 
@@ -280,8 +289,8 @@ the private key for that signing key with:
     [[
       ...
       ],[
-	"GPH7vQ7GmRSJfDHxKdBmWMeDMFENpmHWKn99J457BNApiX1T5TNM8",
-	"5JGi7DM7J8fSTizZ4D9roNgd8dUc5pirUe9taxYCUUsnvQ4zCaQ"
+    "GPH7vQ7GmRSJfDHxKdBmWMeDMFENpmHWKn99J457BNApiX1T5TNM8",
+    "5JGi7DM7J8fSTizZ4D9roNgd8dUc5pirUe9taxYCUUsnvQ4zCaQ"
       ]
     ]
 
@@ -289,7 +298,7 @@ Now we need to start the witness, so shut down the wallet (ctrl-d),  and shut
 down the witness (ctrl-c).  Re-launch the witness, now mentioning the new
 witness 1.6.10 and its keypair:
 
-    ./witness_node --rpc-endpoint=0.0.0.0:8090 --enable-stale-production --witness-id '"1.6.10"' --private-key '["GPH7vQ7GmRSJfDHxKdBmWMeDMFENpmHWKn99J457BNApiX1T5TNM8", "5JGi7DM7J8fSTizZ4D9roNgd8dUc5pirUe9taxYCUUsnvQ4zCaQ"]'
+    ./witness_node --rpc-endpoint=0.0.0.0:8090 --enable-stale-production --witness-id '"1.6.10"' --private-key '["GPH7vQ7GmRSJfDHxKdBmWMeDMFENpmHWKn99J457BNApiX1T5TNM8", "5JGi7DM7J8fSTizZ4D9roNgd8dUc5pirUe9taxYCUUsnvQ4zCaQ"]' --genesis-json aug-14-test-genesis.json -s 104.200.28.117:61705
 
 Alternatively, you can also add this line into yout config.ini:
 
