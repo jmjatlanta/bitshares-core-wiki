@@ -51,7 +51,7 @@ down the witness (ctrl-c).  Re-launch the witness, now mentioning the new
 witness 1.6.10 and its keypair:
 
     ./witness_node --rpc-endpoint=127.0.0.1:8090 \
-                   --witness-id '<witnessid>' \
+                   --witness-id '"<witnessid>"' \
                    --private-key '["<publickey>", "<wifkey>"]' \
                    --genesis-json aug-14-test-genesis.json \
                    -s 104.200.28.117:61705
