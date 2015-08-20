@@ -52,7 +52,8 @@ This opens up a node that we can connect to via the inluded wallet
 
     programs/cli_wallet/cli_wallet -s ws://127.0.0.1:8090 -r 127.0.0.1:8091
 
-which will open port `8091` for queries.
+which will open port `8091` for queries *and* has the capabilities to handle
+accounts while the witness_node can only answer queries to the blockchain.
 
 API
 ---
@@ -140,7 +141,7 @@ To monitor accounts, we recommend to use `get_full_accounts` in order to fetch
 the current state of an account and *automatically* subscribe to future account
 updates including balance update.
 
-An update after a transaction would take the form:
+A notification after a transaction would take the form:
 
     [[
         {
@@ -160,30 +161,11 @@ An update after a transaction would take the form:
         }
     ]]
 
+Note that *two* notifications will be sent, one when the transaction is pending,
+and another one when the transaction was included into a block.
 
-Monitoring Deposits
-===================
+Once we receive a notification we can either pull the full transaction via the
+`most_recent_op` object from the blockchain (the witness node) or get the
+transaction history from the wallet (the cli_wallet).
 
-Import your account
--------------------
-
-Subscribe to new blocks
------------------------
-
-Subscribe to account transactions
----------------------------------
-
-Parsing a transaction
----------------------
-
-Minimum confirmation requirement
---------------------------------
-
-Resuming operations after failures/outages
-------------------------------------------
-
-Hooking of external infrastructure
-----------------------------------
-* pending deposits
-* final deposits
-* unknown transactions
+A code example (Python) will be given shortly.
