@@ -298,7 +298,7 @@ Now we need to start the witness, so shut down the wallet (ctrl-d),  and shut
 down the witness (ctrl-c).  Re-launch the witness, now mentioning the new
 witness 1.6.10 and its keypair:
 
-    ./witness_node --rpc-endpoint=0.0.0.0:8090 --enable-stale-production --witness-id '"1.6.10"' --private-key '["GPH7vQ7GmRSJfDHxKdBmWMeDMFENpmHWKn99J457BNApiX1T5TNM8", "5JGi7DM7J8fSTizZ4D9roNgd8dUc5pirUe9taxYCUUsnvQ4zCaQ"]' --genesis-json aug-14-test-genesis.json -s 104.200.28.117:61705
+    ./witness_node --rpc-endpoint=127.0.0.1:8090 --enable-stale-production --witness-id '"1.6.10"' --private-key '["GPH7vQ7GmRSJfDHxKdBmWMeDMFENpmHWKn99J457BNApiX1T5TNM8", "5JGi7DM7J8fSTizZ4D9roNgd8dUc5pirUe9taxYCUUsnvQ4zCaQ"]' --genesis-json aug-14-test-genesis.json -s 104.200.28.117:61705
 
 Alternatively, you can also add this line into yout config.ini:
 
