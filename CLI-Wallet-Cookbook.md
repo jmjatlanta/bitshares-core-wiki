@@ -10,7 +10,7 @@ cd programs/witness_node
 # if you have previously run a witness node, you may need to remove the old blockchain.
 # at this early stage, new commits often make it impossible to reuse an old database
 #   rm -r witness_node_data_dir
-./witness_node --rpc-endpoint "127.0.0.1:8090" --enable-stale-production -w \""1.6.0"\" \""1.6.1"\" \""1.6.2"\" \""1.6.3"\" \""1.6.4"\"
+./witness_node --rpc-endpoint "127.0.0.1" --enable-stale-production -w \""1.6.0"\" \""1.6.1"\" \""1.6.2"\" \""1.6.3"\" \""1.6.4"\"
 ````
 The initial genesis state has ten pre-configured delegates (1.6.0-9) that all
 use the same private key to sign their blocks, and the witness node has the
