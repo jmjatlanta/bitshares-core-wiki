@@ -94,7 +94,7 @@ _Navigate to cli_wallet_
 _Run cli_  
 **Current chain id for test 1**
 
-     ./cli_wallet -w test_wallet_puppies  --chain-id d011922587473757011118587f93afcc314fbaea094fc1055574721b27975083
+     ./cli_wallet -w test_wallet  --chain-id d011922587473757011118587f93afcc314fbaea094fc1055574721b27975083
 
 Note:
 -w is your directory wallet
