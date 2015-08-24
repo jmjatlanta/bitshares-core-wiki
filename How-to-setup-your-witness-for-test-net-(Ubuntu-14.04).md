@@ -124,6 +124,12 @@ _Restart with parameters to start block producing (block producing needs your wi
 _See your witness producing blocks and 
 you can Ctrl A Ctrl D to detach from screen._
 
+##Tips
 
+If you end up in a fork, or your blockchain gets corrupted it takes a long time to replay blockchain.
 
+>When I am synced, I shutdown with C-c (it should shutdown in a clean way) and I copy the blockchain folder as       backup (if it shutdown without errors).
+>Everytime my blockchain is corrupted, I remove the blockchain folder and I copy with the backup one and restart    the witness.
+>Finally I backup the blockchain folder every day.
 
+>spartako
