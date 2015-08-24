@@ -135,4 +135,4 @@ If you end up in a fork, or your blockchain gets corrupted it takes a long time 
 >spartako
 
 ##Credits
-puppies, abit, clayop, betax, maqifrnswa, lafona, IHashfury, Riverhead, testz,  cryptosile, Thom, spartako
+xeroc, puppies, abit, clayop, betax, maqifrnswa, lafona, IHashfury, Riverhead, testz,  cryptosile, Thom, spartako
