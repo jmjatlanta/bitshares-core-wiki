@@ -50,10 +50,11 @@ full node. We can connect to the network via a seed node:
 
 This opens up a node that we can connect to via the inluded wallet
 
-    programs/cli_wallet/cli_wallet -s ws://127.0.0.1:8090 -r 127.0.0.1:8091
+    programs/cli_wallet/cli_wallet -s ws://127.0.0.1:8090 -H 127.0.0.1:8091
 
-which will open port `8091` for queries *and* has the capabilities to handle
-accounts while the witness_node can only answer queries to the blockchain.
+which will open port `8091` for HTTP-RPC requests *and* has the capabilities to
+handle accounts while the witness_node can only answer queries to the
+blockchain.
 
 API
 ---
