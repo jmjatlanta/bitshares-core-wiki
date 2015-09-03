@@ -1,5 +1,7 @@
 The following instructions covers the setup of a witness in Ubuntu 14.04. The instructions are specific for the Test 1 release, but should be easily ported to other releases.
 
+You can get latest version with chain id, genesis, and github tag here https://github.com/cryptonomex/graphene/releases
+
 Note: Nodes might gone down as everyone is testing.
 
 ##Installation of dependencies
