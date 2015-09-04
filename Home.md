@@ -3,6 +3,7 @@ Welcome to the graphene wiki!
 * [Wallet Login Protocol](Wallet Login Protocol)
 * [Wallet Merchant Protocol](Wallet Merchant Protocol)
 * [Wallet Argument Format](Wallet Argument Format)
+* [Wallet 2-Factor Authentication Protocol](Wallet 2-Factor Authentication Protocol)
 
 For information on how to use Graphene checkout these tutorials:
 
