@@ -1,4 +1,4 @@
-When using the [Wallet Login API](Wallet Login API) or the [Wallet Merchant API](Wallet Merchant API) it is necessary to pass arguments to and from the wallet.   For security purposes these arguments are passed via the URL after the `#` so that they are kept secret from the wallet service provider.   Because URLs are limited to about 2048 bytes of data the Wallet APIs pass arguments as a JSON string that has been compressed with LZMA and serialized to Base58.
+When using the [Wallet Login Protocol](Wallet Login Protocol) or the [Wallet Merchant Protocol](Wallet Merchant API) it is necessary to pass arguments to and from the wallet.   For security purposes these arguments are passed via the URL after the `#` so that they are kept secret from the wallet service provider.   Because URLs are limited to about 2048 bytes of data the Wallet APIs pass arguments as a JSON string that has been compressed with LZMA and serialized to Base58.
 
 ## Step 1: Compress your JSON representation
 
