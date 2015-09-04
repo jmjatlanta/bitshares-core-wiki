@@ -41,11 +41,9 @@ After gathering all of the signatures the wallet redirects the user to `https://
 
 Upon receiving the `result` from the wallet, https://merchant.org will lookup ${SERVER_PRIVATE_KEY} in the user's session data and then combine it with `${WALLET_ONETIMEKEY}` to generate the `shared secret` that was used by the wallet.   Once this shared secret has been recovered, it can be used to recover the public keys that correspond to the provided signatures. 
 
-The last step is to verify that the public keys provided by the signatures are sufficient to authorize the account given the current state of the graphene blockchain.   This can be achieved using the witness API call `bool verify_account_authority( [public_keys...] )`.   The `verify_account_authority` call will return true if the provided keys have sufficient authority to authorize the account.
+The last step is to verify that the public keys provided by the signatures are sufficient to authorize the account given the current state of the graphene blockchain.   This can be achieved using the witness API call `verify_account_authority( account_name_or_id, [public_keys...] )`.   The `verify_account_authority` call will return `true` if the provided keys have sufficient authority to authorize the account, otherwise it will return `false`
 
-
-
-  
+ 
 
 
 
