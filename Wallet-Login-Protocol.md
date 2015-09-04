@@ -6,7 +6,7 @@ For the purpose of this document, we will assume https://merchant.org is the ser
 
 ## Step 1 - Merchant Login Button
 
-The merchant must provide the user with a login button that links to https://wallet.org/login#${args} where ${args} is a specially formatted string containing the following information: 
+The merchant must provide the user with a login button that links to https://wallet.org/login#${args} where ${args} is a JSON object serialized with the [Wallet Argument Format](Wallet Argument Format) and containing following information: 
 
 ```
 {
