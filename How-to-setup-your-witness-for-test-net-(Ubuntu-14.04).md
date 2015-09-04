@@ -69,7 +69,7 @@ _Start a new terminal screen_
      screen
 
 _Run the witness_
-**Current nodes for test 1 (replace for other tests)**
+**Current nodes for test 2b (replace for other tests)**
 
     ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json aug-31-testnet-genesis.json -d test_net_2b -s  "104.236.118.105:1776"
 
@@ -119,7 +119,7 @@ _Exit your witness_
 
     ctrl c
 
-_Restart with parameters to start block producing (block producing needs your witness id and private keys)_ **Current nodes for test 1 (replace for other tests)**
+_Restart with parameters to start block producing (block producing needs your witness id and private keys)_ **Current nodes for test 2b (replace for other tests)**
 
     ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json aug-31-testnet-genesis.json -d test_net_2b -s  "104.236.118.105:1776"  --witness-id '"1.6.5156"' --private-key '["GPH6JhL..your.signing.key..bc5mWyCvERV3coy","5K..your.secret..a"]'
 
