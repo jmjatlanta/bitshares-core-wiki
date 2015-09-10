@@ -29,7 +29,7 @@ Create data dir:
 
 Display witness keys and ID's for copy-pasting:
     programs/genesis_util/get_dev_key "$PREFIX" wit-block-signing-0:101 | python3 -c 'import json; import sys; print("\n".join("""private-key = ["{public_key}", "{private_key}"]""".format(**d) for d in json.load(sys.stdin)))' | sh -c 'cat >> data/gnew/config.ini'
-    python3 -c 'print("print("\n".join("witness-id = \"1.6.{}\"".format(i) for i in range(1, 102)))' | sh -c 'cat >> data/gnew/config.ini'
+    python3 -c 'print("\n".join("witness-id = \"1.6.{}\"".format(i) for i in range(1, 102)))' | sh -c 'cat >> data/gnew/config.ini'
 
 Also set p2p and rpc endpoints.
 
@@ -37,6 +37,10 @@ NB you have to go into config.ini and move them around to the main section, it d
 
 Witness node startup
 --------------------
+
+We need to blow away the previous blockchain so we can rewrite the genesis timestamp:
+
+    rm -Rf data/gnew/blockchain
 
 Open up a new file in a text editor to take some notes.
 Run the witness node like this:
@@ -66,7 +70,7 @@ Running the wallet
 
     programs/genesis_util/get_dev_key "$PREFIX" active-0
     import_key devacct0 5KAceDNGYcBJrwLMeL5gQ3xjrEB2fy5ajFoEUBmt8nPyF8ruoSi
-    programs/genesis_util/get_dev_key "$PREFIX" wit-active-0
+    programs/genesis_util/get_dev_key "$SECRET" wit-active-0
     import_key init0 5K5dAU3Xjjm3y6k6qt8V3pbJVc54w1yhh1GrLZD5wUYLgDaabnm
     programs/genesis_util/get_dev_key "$PREFIX" balance-0
     import_balance devacct0 ["5KaUCUiwMCBmCvnj9n8z2vwcmaoAaLdgaRmnZ1bB2ZTLzJqRJmr"]
