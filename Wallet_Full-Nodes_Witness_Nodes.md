@@ -1,5 +1,3 @@
-Wallet & Full node
-------------------
 We need a client to connect to. Either we run a witness in (monitor mode) or use
 a public trusted witness. For exchanges, it is though recommended to run a
 full node. We can connect to the network via a seed node:
