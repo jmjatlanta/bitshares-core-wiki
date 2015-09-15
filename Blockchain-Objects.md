@@ -15,15 +15,15 @@ unique *id*, an *type* and a *space* in the form:
 
 Some examples:
 
-    1.2.15   # blockchain/protocol space . account . nr-15
-    1.6.105  # blockchain/protocol space . witness . nr-105
-    1.14.7   # blockchain/protocol space . worker . nr-7
+    1.2.15   # protocol space / account / id: 15
+    1.6.105  # protocol space / witness / id: 105
+    1.14.7   # protocol space / worker / id: 7
 
-    2.1.0    # wallet space . dynamic global properties
-    2.3.8    # wallet space . asset . nr-8
+    2.1.0    # implementation space / dynamic global properties
+    2.3.8    # implementation space / asset . id: 8
 
 A programmatic description of all fields can be found in the
-(sources)[https://github.com/cryptonomex/graphene/blob/master/libraries/chain/include/graphene/chain/protocol/types.hpp].
+[sources](https://github.com/cryptonomex/graphene/blob/master/libraries/chain/include/graphene/chain/protocol/types.hpp).
 
 Accounts
 --------
@@ -32,8 +32,8 @@ unique username and a public key on the blockchain. The blockchain assigns an
 incremental user *id* and offers to resolve the name-to-id pair. For instance
 `1.2.15`
 
-    2.6.80    # wallet space . account-balance . nr-80
-    2.7.80    # wallet space . account-statistics . nr-80
-    2.10.80   # wallet space . account-transactions . nr-80
-    2.8.80    # wallet space . transactions . nr-80
-    2.9.80    # wallet space . block-summary . nr-80
+    2.6.80    # implementation space / account-balance / id: 80
+    2.7.80    # implementation space / account-statistics / id: 80
+    2.10.80   # implementation space / account-transactions / id: 80
+    2.8.80    # implementation space / transactions / id: 80
+    2.9.80    # implementation space / block-summary / id: 80
