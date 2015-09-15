@@ -1,5 +1,3 @@
-API
----
 We provide several different API's. Each API has its own ID. When running
 `witness_node`, initially two API's are available:
 
