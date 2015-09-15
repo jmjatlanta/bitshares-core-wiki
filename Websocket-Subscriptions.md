@@ -1,13 +1,22 @@
-We first ask for access to the `database`-api with
+Before we can subscribe to any changes, we first need to ask for access to the `database`-api with
 
     > {"id":2,"method":"call","params":[0,"database",[]]}
     < {"id":2,"result":1}
 
 The `result` will be our `DATABASE_API_ID`!
 
-All objects can be subscribed to in order to get notified by the wallet via
-websocket whenever the object changes. To simplify development a global
-subscription callback can be registered with the following RPC
+In Graphene, we have the following subscriptions available:
+
+* `set_subscribe_callback( cb, bool clear_filter )`:
+     To simplify development a global subscription callback can be registered.
+* `set_pending_transaction_callback(  cb )`:
+     Notifications for incoming *unconfirmed* transactions.
+* `set_block_applied_callback( blockid )`:
+     Gives a notification whenever the block `blockid` is applied to the
+     blockchain.
+
+Let's first get a global scubscription callback to disctinguish our
+notifications from regular RPC calls:
 
     > {"id":4,"method":"call","params":[DATABASE_API_ID,"set_subscribe_callback",[SUBSCRIPTION_ID]]}
 
