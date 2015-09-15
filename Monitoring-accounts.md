@@ -1,9 +1,11 @@
+It is recommended that the reader has went through the following introductions:
+
 * [Introduction to Blockchain Objects](Blockchain-Objects)
 * [Introduction to Wallet/Node daemons](Wallet_Full Nodes_Witness_Nodes)
-* [API](API)
+* [Graphene API](API)
 * [Websocket Subscriptions](Websocket Subscriptions)
 
-To monitor accounts, we recommend to use `get_full_accounts` in order to fetch
+To monitor accounts, we recommend to use the `get_full_accounts` call in order to fetch
 the current state of an account and *automatically* subscribe to future account
 updates including balance update.
 
@@ -26,3 +28,5 @@ A notification after a transaction would take the form:
           "lifetime_fees_paid": 50156232
         }
     ]]
+
+Please distinguish transactions from operations: Since a single transaction may contain several (independent) operations, monitoring an account may only require to investigate *operations* that change the account.
