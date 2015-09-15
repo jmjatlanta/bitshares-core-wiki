@@ -1,5 +1,3 @@
-General Introduction
-====================
 In contrast to most cryptocurrency wallets, the BitShares 2.0 has a different
 model to represent the blockchain, its transactions and accounts. This chapter
 wants to given an introduction to the concepts of *objects* as they are used by
