@@ -103,7 +103,7 @@ Note:
 
 _Setup witness as per xerocs instructions_ 
 
-[Howto-become-an-active-witness-in-BitShares-2.0](https://github.com/cryptonomex/graphene/wiki/Howto-become-an-active-witness-in-BitShares-2.0)
+[Howto-become-an-active-witness-in-BitShares-2.0](https://github.com/cryptonomex/graphene/wiki/How%20to%20become%20an%20active%20witness%20in%20BitShares%202.0)
 
 
 Remember to copy your keys, witness id
