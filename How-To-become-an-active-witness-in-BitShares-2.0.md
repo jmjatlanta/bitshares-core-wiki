@@ -173,7 +173,9 @@ BitShares 2.0:
     XXXXXXX BTS
 
 Note: Make sure to put the []-brackets around the private key, since the import
-method takes an array of keys.
+method takes an array of keys.  
+
+In case your account's owner key is different from its active key, make sure you import it into BitShares 2.0 as well.
 
 Since only lifetime members can become witnesses, you must first upgrade to a
 lifetime member. This step costs the lifetime-upgrade fee which will eventually
