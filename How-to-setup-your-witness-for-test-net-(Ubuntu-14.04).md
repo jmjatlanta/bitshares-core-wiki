@@ -1,4 +1,4 @@
-The following instructions covers the setup of a witness in Ubuntu 14.04. The instructions are specific for the Test 4 release, but should be easily ported to other releases.
+The following instructions covers the setup of a witness in Ubuntu 14.04. The instructions are specific for the Test 5 release, but should be easily ported to other releases.
 
 You can get latest version with chain id, genesis, and github tag here https://github.com/cryptonomex/graphene/releases
 
@@ -42,9 +42,9 @@ Check out and build
     git clone https://github.com/cryptonomex/graphene.git
     cd graphene
 
-**Check out test 4 (specific to this chain) / or don't do anything to get latest**
+**Check out test 5 (specific to this chain) / or don't do anything to get latest**
 
-    git checkout test4
+    git checkout test5
 
 Update submodules and build make file
  
@@ -60,19 +60,19 @@ _Navigate to the witness directory_
     cd ~/graphene/programs/witness_node
 
 _Download genesis_ 
-**Path specific for Test 4**
+**Path specific for Test 5**
 
-     wget https://github.com/cryptonomex/graphene/releases/download/test4/oct-01-testnet-genesis.json.zip
-     unzip oct-01-testnet-genesis.json.zip
+     wget https://github.com/cryptonomex/graphene/releases/download/test5/oct-02-testnet-genesis.json.zip
+     unzip oct-02-testnet-genesis.json.zip
 
 _Start a new terminal screen_
 
      screen
 
 _Run the witness_
-**Current nodes for test 4 (replace for other tests)**
+**Current nodes for test 5 (replace for other tests)**
 
-    ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json oct-01-testnet-genesis.json -d test_net_4 -s  "104.236.51.238:1984"
+    ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json oct-02-testnet-genesis.json -d test_net_5 -s  "104.236.51.238:2001"
 
 Note: 
 -d parameter is for the directory you want the witness data to be stored
@@ -80,7 +80,7 @@ Note:
 
 If you have problems, you might need to put the whole path for the genesis
 
-    ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json ~/graphene/programs/witness-node/oct-01-testnet-genesis.json -d test_net_4 -s "104.236.51.238:1984" 
+    ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json ~/graphene/programs/witness-node/oct-02-testnet-genesis.json -d test_net_5 -s "104.236.51.238:2001" 
 
 _Detach from screen_
 
@@ -95,9 +95,9 @@ _Navigate to cli_wallet_
     cd ~/graphene/programs/cli_wallet
 
 _Run cli_  
-**Current chain id for test 4**
+**Current chain id for test 5**
 
-     ./cli_wallet -w test_wallet  --chain-id 0682819add44adb68b5ae8fa24bcd23bca930d5fe9eda95e7e09343c53ee0859
+     ./cli_wallet -w test_wallet  --chain-id c746b258deb5e476601488d8dbb98cf6dcacc2dec857fda58514907257d461c3
 
 Note:
 -w is your directory wallet
@@ -120,9 +120,9 @@ _Exit your witness_
 
     ctrl c
 
-_Restart with parameters to start block producing (block producing needs your witness id and private keys)_ **Current nodes for test 4 (replace for other tests)**
+_Restart with parameters to start block producing (block producing needs your witness id and private keys)_ **Current nodes for test 5 (replace for other tests)**
 
-    ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json oct-01-testnet-genesis.json -d test_net_4 -s  "104.236.51.238:1984"  --witness-id '"1.6.5156"' --private-key '["GPH6JhL..your.signing.key..bc5mWyCvERV3coy","5K..your.secret..a"]'
+    ./witness_node --rpc-endpoint "127.0.0.1:8090"  --genesis-json oct-02-testnet-genesis.json -d test_net_5 -s  "104.236.51.238:2001"  --witness-id '"1.6.5156"' --private-key '["GPH6JhL..your.signing.key..bc5mWyCvERV3coy","5K..your.secret..a"]'
 
 _See your witness producing blocks and 
 you can Ctrl A Ctrl D to detach from screen._
