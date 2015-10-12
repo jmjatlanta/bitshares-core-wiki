@@ -29,7 +29,7 @@ If you cannot install gcc-4.9, you will need to add this repository before hand 
     tar xjf boost_1_57_0.tar.bz2
     cd boost_1_57_0/
     ./bootstrap.sh "--prefix=$BOOST_ROOT"
-    ./b2 install [/code]
+    ./b2 install
 
 ##Git  checkout and build
 Ensure your boost path is correct
