@@ -13,6 +13,7 @@ Welcome to the graphene wiki!
 ### Exchange
 
 * [Monitoring Accounts](Monitoring accounts)
+* [Import BitShares-0.9.3c wallets into BitShares 2.0 CLI wallet](Import BitShares-0.9.3c wallets into BitShares 2.0 CLI wallet)
 
 ### Wallet Protocols:
 
