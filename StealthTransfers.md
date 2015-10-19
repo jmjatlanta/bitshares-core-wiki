@@ -83,9 +83,17 @@ At this point Bob has not actually received any funds because his wallet has no 
 
 The call to receive a blind transfer takes two optional arguments, "from" and "memo" which will be used to label alice's public key in bob's wallet.  This helps bob to make sense of his transfer history.
 
-   >>> blind_history bob 
+    >>> blind_history bob 
 
-   WHEN           AMOUNT  FROM  =>  TO  MEMO
-   ====================================================================================
-   19 seconds ago  500 BTS  alice  =>  bob  memo
+    WHEN           AMOUNT  FROM  =>  TO  MEMO
+    ====================================================================================
+    19 seconds ago  500 BTS  alice  =>  bob  memo
 
+### Transferring back to Public 
+
+Eventually every blind balance needs to convert back to a public balance which can be achieved with the following command:
+
+    >>> transfer_from_blind alice alicepub 1000 BTS true 
+    { ... }
+
+In this case alice returned some of her remaining blind balances back to her public balance.
