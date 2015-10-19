@@ -4,6 +4,7 @@ Welcome to the graphene wiki!
 
 * [Blockchain Objects](Blockchain Objects)
 * [Wallet / Full Nodes / Witness Nodes](Wallet_Full Nodes_Witness_Nodes)
+* [Stealth Transfers](StealthTransfers)
 
 ### Developers:
 
