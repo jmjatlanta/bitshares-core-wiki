@@ -262,3 +262,42 @@ The Backstory:  I want to write a patch `api-456` which depends on
     # write your patch...
     git add libraries/api/api.cpp
     git commit -m "Now the API is even better"
+
+### Putting a commit on its own branch
+
+The Backstory:  I did an API improvement, then I fixed a bug.  These are two unrelated things and should be in two different branches.  However my history looks like this:
+
+    commit 2c5d85c0ceaef022bdd783720503cfe11a493782
+    Author: me <me@localhost>
+
+        Fix a bug
+
+    commit 5b457a9f305f585bda6c5b2dcd40c12235b8f2bc
+    Author: me <me@localhost>
+
+        Create a new API call
+
+    commit a4382631cb3f3343e18c5894dcc818e7f3497b06
+    Author: coredev <coredev@coredevbox>
+
+        This is graphene/stable
+
+- First we create a new `bugfix` branch with just the bugfix commit based on `graphene/stable` and cherry-picking the commit:
+
+    git checkout graphene/stable -b bugfix-456
+    git cherry-pick 2c5d85
+    git push -f graphene HEAD:bugfix-456
+
+- Then we fix the API branch by backing up to `5b457`:
+
+    git checkout api-123
+    git reset --hard 5b457
+    git push -f graphene HEAD:api-123
+
+- You shouldn't do this if your code has not been merged to `master`!  If your code has been merged, well, now the bugfix spuriously depends on the API call.  Living with the spurious dependency is easier than cherry-picking into master.
+
+- If you're worried that this violates the "avoid cherry-picking" guideline of [this blog post](http://www.draconianoverlord.com/2013/09/07/no-cherry-picking.html), you should read the post more carefully.  In particular, the title states that "If you cherry pick, your branch model is wrong."  In this case, you broke the branching model when you made the bugfix commit without creating a new branch from stable; now you need to cherry-pick. The need to cherry-pick to get back to a more policy-compliant state is an indication that you did something wrong (namely, breaking the branching model).
+
+- This should only be a very minor problem.  Project policy states that the `api-` branches and `develop` can be reset at any time, so even if you've pushed commits like this, they can still be rewound.
+
+- If it has been merged to `master` it is a slightly less minor problem, but still not very significant in the scheme of things.  We should still be able to avoid many cases of this happening, as a branch should not pass review if it creates this kind of dependency across multiple unrelated commits.
