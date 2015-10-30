@@ -26,7 +26,7 @@ downward from Graphene to chain repositories.  Porting code from a chain reposit
 - `graphene/develop` : Staging branch for new features not yet ready for `graphene/master`.
 - `graphene/stable`  : Most recent common ancestor of `$CHAIN/master` across all chains.  Preferred basis for patches, since patches written against this should apply to any chain.
 
-### Individual patch branches:
+### Individual patch branches
 
 - `graphene/fork-123`    : HF Commits which will change consensus go in here. 
 - `graphene/api-123`     : Non-HF Commits which add API calls go here.
@@ -35,6 +35,13 @@ downward from Graphene to chain repositories.  Porting code from a chain reposit
 - `graphene/bugfix-123`  : Non-HF Commits which fix a specific local bug.
 - `graphene/cleanup-123` : Non-HF Commits which refactor, neaten, or fix architectural issues.  May be semantically equivalent.
 - `graphene/feature-123` : Possibly-HF Commits which don't fit well in the above categories.  The issue should describe exactly what it does.
+
+### Non-issue branches
+
+Some changes are so minor as to not require an issue, e.g. changes to logging.  These should still be done against `stable` where possible (or the earliest commit they depend on,
+where not possible) and merged.  In practice you may develop such patches against `master` or one of the chain branches; then rebase against `stable` before pushing.
+
+- `graphene/log-blackswan` : Changes to logging of something (in this case, black swan).
 
 ## Policies
 
