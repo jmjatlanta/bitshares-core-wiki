@@ -282,13 +282,13 @@ The Backstory:  I did an API improvement, then I fixed a bug.  These are two unr
 
         This is graphene/stable
 
-- First we create a new `bugfix` branch with just the bugfix commit based on `graphene/stable` and cherry-picking the commit:
+First we create a new `bugfix` branch with just the bugfix commit based on `graphene/stable` and cherry-picking the commit:
 
     git checkout graphene/stable -b bugfix-456
     git cherry-pick 2c5d85
     git push -f graphene HEAD:bugfix-456
 
-- Then we fix the API branch by backing up to `5b457`:
+Then we fix the API branch by backing up to `5b457`:
 
     git checkout api-123
     git reset --hard 5b457
