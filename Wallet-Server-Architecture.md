@@ -14,7 +14,9 @@ The wallet will be saved on the server using the *public_key* derived from *encr
 
 Then the user can fetch data from the server like so:
 
-    server.fetchWallet( publickey )
+    server.fetchWallet( publickey, local_hash )
+
+This method will only fetch the wallet if it is different than what is already cached locally.  In addition to returning the encrypted wallet, this method will also return statistics about when it was last updated, and which IPs have requested the wallet and when.  This can be used by the user to detect potential attempts at fraud.
 
 The user can update their data with this call:
    
@@ -37,8 +39,8 @@ Users generate a private key from their password.  Generally speaking, passwords
 
 The server should limit the number of wallet requests it accepts per IP address to a fixed number per hour.  In this way users wallet data is kept secure from attempts at brute force attacks unless the server itself is compromised.  In the event the server is compromised, users are only protected by the quality of their password and any other data used as salt.
 
+## Saving the Wallet Locally 
 
-
-
+The browser should cache the wallet data locally 
 
 
