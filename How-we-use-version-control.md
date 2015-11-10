@@ -1,6 +1,4 @@
 
-NOTE:  We're still working on getting ready to transition to this policy.  It isn't in effect quite yet!
-
 Our new (as of October 2015) Git branching model is heavily influenced by [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/),
 and [this blog post](http://www.draconianoverlord.com/2013/09/07/no-cherry-picking.html).
 
