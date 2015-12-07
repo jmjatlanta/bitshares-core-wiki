@@ -31,7 +31,7 @@ BitShares OS X Build Instructions
 
 7. Clone the Graphene repository:
    ```
-   git clone git@github.com:Cryptonomex/graphene.git
+   git clone https://github.com/cryptonomex/graphene.git
    cd graphene
    ```
 
