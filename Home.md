@@ -1,5 +1,11 @@
 Welcome to the graphene wiki!
 
+### Build Instructions
+
+* [Ubuntu](build-ubuntu)
+* [OS X](Building-on-OS-X)
+* [Windows](BUILD_WIN32)
+
 ### Introduction Material:
 
 * [Blockchain Objects](Blockchain Objects)
