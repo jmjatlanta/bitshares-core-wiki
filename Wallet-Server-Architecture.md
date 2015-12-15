@@ -10,7 +10,7 @@ Then the user can store data on the server like so:
 
     server.createWallet( code, encrypted_data, signature ) 
 
-The wallet will be saved on the server using the *public_key* derived from *encrypted_data* and *signature*.
+The wallet will be saved on the server using the *public_key* derived from *encrypted_data* and *signature*.  The code contains a irreversible hash of the email.  This is used in a unique constraint effectively limiting users to one wallet per email.  The original email address is not stored in the database.
 
 Then the user can fetch data from the server like so:
 
@@ -20,16 +20,22 @@ This method will only fetch the wallet if it is different than what is already c
 
 The user can update their data with this call:
    
-    server.saveWallet( encrypted_data, signature )
+    server.saveWallet( original_local_hash, encrypted_data, signature )
 
-The signature can be used to derive the public key under which encrypted_data should be stored.  The server will have to verify that derived public key exists in the database or this method will fail.
+The signature can be used to derive the public key under which encrypted_data should be stored.  The server will have to verify that derived public key exists in the database or this method will fail.  If the original_local_hash does not match the wallet being overwritten this method needs to fail.
 
-Lastly the user can change their "key" with the following call:
+The user can change their "key" with the following call:
 
-    server.changePassword( encrypted_data, old_signature, new_signature )
+    server.changePassword( original_local_hash, original_signature, new_encrypted_data, new_signature )
 
-After this call the public key used to lookup this wallet will be the one derived from *new_signature* and *encrypted_data*.  A wallet must exist at the *old_public_key* derived from *old_signature*.
+After this call the public key used to lookup this wallet will be the one derived from *new_signature* and *new_encrypted_data*.  A wallet must exist at the *old_public_key* derived from the *original_local_hash* and *original_signature*.
 
+
+The user may delete their wallet with the following call:
+
+    server.deleteWallet( local_hash, signature )
+
+For security reasons, this delete is permanent.  The user may repeat the process to create a new wallet using the same email.
 
 ## Generating Public Keys
 
