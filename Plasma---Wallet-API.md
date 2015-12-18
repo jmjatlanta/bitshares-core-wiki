@@ -9,7 +9,7 @@ Assume a class named **Wallet** that has the following calls:
 
 This method will configure the wallet to look to a remote host to load and/or save your wallet. By passing *null* into this call the wallet will stop synchronizing its state with the remote server.
 ```
-wallet.useBackupServer( hostname )
+wallet.useBackupServer( url )
 ```
 
 This call is used to configure the wallet to keep a local copy on disk. This allows the user to access the wallet even if the server is no longer available. This option can be disabled on public computers where the wallet data should never touch disk and should be deleted when the user logs out. 
@@ -22,9 +22,10 @@ This method is used to configure the wallet to save its data on the remote serve
 wallet.keepRemoteCopy( save = true, token = null )
 ```
 
-This API call is used to load the wallet. If a backup server has been specified then it will attempt to fetch the latest version from the server, otherwise it will load the local wallet into memory.  The configuration set by *keepLocalCopy* will determine whether or not the wallet is saved to disk as a side effect of logging in.
+This API call is used to load the wallet. If a backup server has been specified then it will attempt to fetch the latest version from the server, otherwise it will load the local wallet into memory.  The configuration set by *keepLocalCopy* will determine whether or not the wallet is saved to disk as a side effect of logging in.  The wallet is unlocked in RAM when it combines these as follows: lowercase(email) + lowercase(username) + password to come up with a matching public / private key.  If *keepRemoteCopy* is enabled, the email used to obtain the token must match the email used here.  Also, if *keepRemoteCopy* is enabled, the server will store only a one-way hash of the email (and not the email itself) so that it track resources by unique emails.
+
 ```
-wallet.login( username, password )
+wallet.login( email, username, password )
 ```
 
 This API call will remove the wallet state from memory.
@@ -37,12 +38,7 @@ This method returns a JSON object representing the state of the wallet. It is on
 wallet.getState()
 ```
 
-This method is used to update the wallet state. If the wallet is configured to keep synchronized with the remote wallet then it will perform the following steps to ensure that two clients to attempt to modify the state at the same time:
-1. fetch the current wallet from the server
-2. verify that the local wallet state is the same as the remote server or "fail" by throwing execption
-3. store the new value on the server on the condition that the server's current state equals the prior state. This verification will have to be performed on the server where it can do an atomic update. The call to the server should fail if the state has been changed by another client.
-4. after successfully storing the state on the server, save the state to local memory, and optionally disk.  
+This method is used to update the wallet state. If the wallet is configured to keep synchronized with the remote wallet then the server will refer to a copy of the wallets revision history to ensure that no version be overwritten which would cause this API call to "fail."  After successfully storing the state on the server, save the state to local memory, and optionally disk.  
 ```
 wallet.setState( state ) 
 ```
-
