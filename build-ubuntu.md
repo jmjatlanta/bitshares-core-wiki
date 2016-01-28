@@ -23,7 +23,7 @@ The Boost which ships with Ubuntu 15.04 is too old.  You need to download the Bo
 Qt 5.5 is a dependency if you wish to build `light_client`.  Building it from source
 requires the following dependencies on Ubuntu LTS:
 
-    sudo apt-get install libxcb1 libxcb1-dev libx11-xcb1 libx11-xcb-dev libxcb-keysyms1 libxcb-keysyms1-dev libxcb-image0 libxcb-image0-dev libxcb-shm0 libxcb-shm0-dev libxcb-sync0 libxcb-sync0-dev libxcb-xfixes0-dev libxrender-dev libxcb-shape0-dev
+    sudo apt-get install libxcb1 libxcb1-dev libx11-xcb1 libx11-xcb-dev libxcb-keysyms1 libxcb-keysyms1-dev libxcb-image0 libxcb-image0-dev libxcb-shm0 libxcb-shm0-dev libxcb-icccm4 libxcb-icccm4-dev libxcb-sync1 libxcb-sync-dev libxcb-
 
 Qt 5.5 can be built as follows:
 
