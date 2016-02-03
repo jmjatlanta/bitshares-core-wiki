@@ -86,12 +86,14 @@ The Backstory:  I want to work on `bitshares` and `graphene` in the same local r
 
 - This is why git remotes were invented.  A git remote is simply an alias to a URL where a repository lives.  Create git remotes as follows:
 
+    ```
     git remote add graphene git@github.com:cryptonomex/graphene
     git fetch graphene
     git remote add bts2 git@github.com:bitshares/bitshares-2
     git fetch bts2
     git remote add muse git@github.com:peertracksinc/muse
     git fetch muse
+    ```
 
 - Git tip:  The `git fetch` command locally mirrors all the branches on the specified remote into *remote-tracking branches* such as `bts2/bitshares`.  These remote-tracking branches are automatically updated by future `git fetch` operations, so at any point in time the `bts2/` namespace collectively represents the state of the `bts2` node the last time you did a `git fetch bts2`.
 
@@ -107,12 +109,14 @@ The Backstory:  I want to add an API call.
 
 - Create an issue in the [Graphene repo](https://github.com/cryptonomex/graphene).  This assumes the issue you created was issue number 123.
 
+    ```
     git fetch graphene
     git checkout graphene/stable -b api-123
     notepad libraries/app/api.cpp
     git add libraries/app/api.cpp
     git commit -m "The API is better now"
     git push graphene HEAD:api-123
+    ```
 
 - Git tip:  The `-b` command creates a branch.  A branch is simply a named pointer to a commit, which automatically advances when you create a new commit with `git commit`.  Creating local branches for specific tasks and deleting them when you're done is often a useful workflow.
 
@@ -124,26 +128,32 @@ The Backstory:  I want to add the API feature I created in Graphene (see previou
 
 - Merge it into `graphene/develop`:
 
+    ```
     git fetch graphene
     git checkout graphene/develop -b develop
     git merge graphene/api-123
     git push graphene HEAD:develop
+    ```
 
 - Merging your feature into `graphene/develop` is a signal that you've completed your self-review and it's as ready for production as you can make it on your own.  It's time for other developers to take a look at it.
 
 - When it passes code review, it's ready to be merged to `graphene/master`:
 
+    ```
     git fetch graphene
     git checkout graphene/master -b master
     git merge graphene/api-123
     git push graphene HEAD:master
+    ```
 
 - Anything in `graphene/master` can be merged into chain branches:
 
+    ```
     git fetch bts2
     git checkout bts2/master -b master
     git merge graphene/api-123
     git push graphene HEAD:master
+    ```
 
 ### When to update a chain's `master`
 
@@ -159,7 +169,9 @@ The Backstory:  So what's the deal with `graphene/stable` then?
 
 - It's the most recent common ancestor of `graphene/master` and all other chains, i.e.:
 
+    ```
     git merge-base --octopus graphene/master bts2/bitshares muse/muse otherchain/otherchain ...
+    ```
 
 - If the current `stable` commit is different from the output of the above command, `stable` should be updated.
 
@@ -170,8 +182,10 @@ I already made a commit.  What do I do?
 
 - *If you have not merged your commit to master* you can rewrite the commit.
 
+    ```
     git commit --amend
     git push -f origin HEAD:api-123
+    ```
 
 ### Fixing a multiple-commit un-merged mistake
 
@@ -181,6 +195,7 @@ The Backstory:  OK, I screwed up and made two commits.  What do I do?
 
 Your history looks like this:
 
+    ```
     commit 2c5d85c0ceaef022bdd783720503cfe11a493782
     Author: me <me@localhost>
 
@@ -195,6 +210,7 @@ Your history looks like this:
     Author: coredev <coredev@coredevbox>
 
         This is somebody else's code
+    ```
 
 The middle commit is useless because it does not compile.
 What you really want to do is combine the last two commits into a single patch.
@@ -202,12 +218,16 @@ The two commits you want to combine need not be adjacent in your history (althou
 they are adjacent in this example).
 You can combine commits using the interactive mode of `git rebase`:
 
+    ```
     git rebase -i a43826
+    ```
 
 This will provide you with an editor containing a list of commits since the listed commit, like this:
 
+    ```
     pick 5b457a9 Create a new API call that doesn't compile
     pick 2c5d85c Fix the API call
+    ```
 
 If the commits you are combining are not adjacent in the history, you will need to
 reorder your commits so that they are adjacent; simply cut and paste the second commit immediately below
@@ -215,8 +235,10 @@ the first commit.
 
 Once your two commits are adjacent, you can change the "pick" for the second commit into "squash", like this:
 
+    ```
     pick 5b457a9 Create a new API call that doesn't compile
     squash 2c5d85c Fix the API call
+    ```
 
 Then save and quit the editor.  A new editor prompt will appear asking you to create a message for the new commit,
 already containing the messages of squashed commits.  (If you would like the combined commit to have the same message
