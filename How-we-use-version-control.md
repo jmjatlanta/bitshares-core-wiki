@@ -151,7 +151,7 @@ The Backstory:  I'm not sure what I should put in `$CHAIN/master`.
 
 This can actually be *mechanically determined*:
 
-    git merge-base graphene/master bts2/bitshares
+    git merge-base origin/develop bts2/bitshares
 
 ### When to update `graphene/stable`
 
