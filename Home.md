@@ -14,6 +14,7 @@ Welcome to the graphene wiki!
 
 ### Developers:
 
+* [Graphene GitHub Guidelines](Graphene-GitHub-Guidelines)
 * [General API](API)
 * [Websocket Subscriptions](Websocket Subscriptions)
 
