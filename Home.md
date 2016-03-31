@@ -5,6 +5,7 @@ Welcome to the graphene wiki!
 * [Ubuntu](build-ubuntu)
 * [OS X](Building-on-OS-X)
 * [Windows](BUILD_WIN32)
+* [Web and light wallets](Web-and-light-wallets-release-procedure)
 
 ### Introduction Material:
 
