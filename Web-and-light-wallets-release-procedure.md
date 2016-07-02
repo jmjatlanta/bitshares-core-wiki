@@ -19,6 +19,7 @@
 - Open `dist/index.html` and make sure everything is working and the version in status bar matches tag
 - Clone `https://github.com/cryptonomex/faucet` and checkout `ol` branch and install gems with bundle command
 - In faucet dir run `mina wallet` - this will deploy to 'ol' server (specified in `.ssh/config`)
+- Alternatively, copy the dist folder directly to the server: scp dist/* bitshares.openledger.info:/www/current/public/wallet/    
 - Open https://bitshares.openledger.info and make sure there are no errors and version matches release tag
 
 ## Light wallets
@@ -33,7 +34,7 @@
 - Tag it with release version
 - Edit `electron/build/package.json` and update version
 - Commit your changes and push both commits and tags
-- Build it in `web/` via `npm run build` command
+- Build it in `web/` via `npm run electron` command
 - Goto to `electron/`
 - Build light wallet via `npm run release` command
 - It will create dmg/deb/exe file in `releases/`
