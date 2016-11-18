@@ -1,12 +1,21 @@
 Welcome to the graphene wiki!
 
+### Build Instructions
+
+* [Ubuntu](build-ubuntu)
+* [OS X](Building-on-OS-X)
+* [Windows](BUILD_WIN32)
+* [Web and light wallets](Web-and-light-wallets-release-procedure)
+
 ### Introduction Material:
 
 * [Blockchain Objects](Blockchain Objects)
 * [Wallet / Full Nodes / Witness Nodes](Wallet_Full Nodes_Witness_Nodes)
+* [Stealth Transfers](StealthTransfers)
 
 ### Developers:
 
+* [Graphene GitHub Guidelines](Graphene-GitHub-Guidelines)
 * [General API](API)
 * [Websocket Subscriptions](Websocket Subscriptions)
 
