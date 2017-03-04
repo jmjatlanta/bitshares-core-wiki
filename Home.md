@@ -2,6 +2,8 @@ Welcome to the graphene wiki!
 
 ### Build Instructions
 
+**BitShares requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.60]. Versions earlier than 1.57 or newer than 1.60 are NOT supported.**
+
 * [Ubuntu](build-ubuntu)
 * [OS X](Building-on-OS-X)
 * [Windows](BUILD_WIN32)
