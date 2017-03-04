@@ -11,7 +11,7 @@
 * [Wallet / Full Nodes / Witness Nodes](Wallet_Full Nodes_Witness_Nodes)
 * [Stealth Transfers](StealthTransfers)
 
-### Wallet:
+### Wallet
 * [CLI Wallet Cookbook](https://github.com/cryptonomex/graphene/wiki/CLI-Wallet-Cookbook)
 * [Wallet Login Protocol](Wallet Login Protocol)
 * [Wallet Merchant Protocol](Wallet Merchant Protocol)
@@ -24,11 +24,11 @@
 * [Websocket Subscriptions](Websocket Subscriptions)
 * [Testing](Testing)
 
-### Exchanges:
+### Exchanges
 * [Monitoring Accounts](Monitoring accounts)
 * [Import BitShares-0.9.3c wallets into BitShares 2.0 CLI wallet](Import BitShares-0.9.3c wallets into BitShares 2.0 CLI wallet)
 
-### Witnesses:
+### Witnesses
 * [How to become an active witness in BitShares 2.0](How to become an active witness in BitShares 2.0)
 * [Howto import an existing delegate as witness in BitShares 2.0](Howto import an existing delegate as witness in BitShares 2.0)
 * [How to setup your witness for test net (Ubuntu 14.04)](How to setup your witness for test net (Ubuntu 14.04))
