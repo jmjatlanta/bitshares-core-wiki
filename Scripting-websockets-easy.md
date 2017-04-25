@@ -4,7 +4,7 @@ Some of this methods are curl, pybitshares, wscat and many others.
 
 The most used tool is wscat, this is a great tool but it is no scriptable. I found myself pasting the same commands like login and subscribe to database, crypto and other apis over and over again.
 
-I was after scripting wscat since a while until @gdfbacchus asked in telegram for the same thing.
+I was after scripting wscat since a while until the walrus(github: @gdfbacchus) asked in telegram for the same thing.
 
 Ptython is the choice as it is probably the most used language in the bitshares community.
 
