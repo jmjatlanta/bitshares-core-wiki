@@ -1,9 +1,10 @@
 It is recommended that the reader has went through the following introductions:
 
-* [Introduction to Blockchain Objects](Blockchain-Objects)
-* [Introduction to Wallet/Node daemons](Wallet_Full Nodes_Witness_Nodes)
-* [Graphene API](API)
-* [Websocket Subscriptions](Websocket Subscriptions)
+* [[Introduction to Blockchain Objects|Blockchain-Objects]]
+* [[Introduction to Wallet/Node daemons|Wallet_Full-Nodes_Witness_Nodes]]
+* [[Graphene API|API]]
+* [[Websocket Subscriptions|Websocket Subscriptions]]
+
 
 To monitor accounts, we recommend to use the `get_full_accounts` call in order to fetch
 the current state of an account and *automatically* subscribe to future account
