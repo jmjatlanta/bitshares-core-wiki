@@ -96,6 +96,7 @@ setenv_x64.bat
 
 * Build OpenSSL DLLs
 ```
+D:
 cd D:\bitshares\openssl-1.0.1g
 perl Configure --openssldir=D:\bitshares\OpenSSL VC-WIN64A
 ms\do_ms.bat
@@ -105,6 +106,14 @@ nmake -f ms\ntdll.mak install
 
   This will create the directory `D:\bitshares\OpenSSL` with the libraries, DLLs,
   and header files.
+
+* Build Boost
+```
+D:
+cd D:\bitshares\boost_1_57_0
+bootstrap
+.\b2
+```
 
 #### Build project files for BitShares Core ####
 
