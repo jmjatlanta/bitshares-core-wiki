@@ -33,9 +33,9 @@ Allows to run only the plugins you want.
 
 By default, if the plugin parameter is not present in the command line startup the node will start with the default plugins loaded, this are:
 
-witness
-account_history
-market_history
+- witness
+- account_history
+- market_history
 
 You can launch a node only with the witness plugin activated like the following if you are after just validating blocks:
 
