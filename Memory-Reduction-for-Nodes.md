@@ -1,5 +1,4 @@
-The BitShares blockchain is big and Graphene technology stores all the data into RAM at chain replay.
-Most of the time a full node with everything loaded is not needed and expensive due to the amount of memory the machine need to have available. RAM usage can be reduced significantly by using `witness_node` executable options.
+The BitShares blockchain is big and Graphene technology stores all the data into RAM at chain replay. Currently(2017-09-04) a full node requires 40GB of RAM. Most of the time a full node with everything loaded is not needed and expensive due to the amount of memory the machine need to have available. RAM usage can be reduced significantly by using `witness_node` executable options.
 
 Here are the 4 new options you can use to reduce RAM:
 
