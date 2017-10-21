@@ -40,7 +40,7 @@ By default, if the plugin parameter is not present in the command line startup t
 You can launch a node only with the witness plugin activated like the following if you are after just validating blocks:
 
 `
-programs/witness_node/witness_node --data-dir data/my-blockprod --rpc-endpoint "127.0.0.1:8090" --plugins witness
+programs/witness_node/witness_node --data-dir data/my-blockprod --rpc-endpoint "127.0.0.1:8090" --plugins "witness"
 `
 
 ## --track-account
