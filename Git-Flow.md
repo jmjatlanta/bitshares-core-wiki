@@ -1,0 +1,92 @@
+# Development / Release / Bugfix Workflows
+
+The purpose of this document is to describe and define how changes flow into our
+code and through the various stages of development until it finally goes into
+production.
+
+The general idea is based on [git-flow](https://datasift.github.io/gitflow/IntroducingGitFlow.html).
+
+For our purposes, the general concept behind gitflow has been extended to allow
+for these additional needs:
+
+1. We have two different types of releases, mainnet and testnet, with a master-like branch for each one.
+2. We have to distinguish consensus-breaking changes (aka hardforks) from
+   non-consensus-breaking changes.
+
+## Goals To Achieve:
+
+1. Maintain two independent release versions, testnet and mainnet.
+2. Decouple development from releases, i. e. maintain the ability to create
+   emergency bugfixes for current release without bringing incomplete new
+   features into production.
+3. Separate consensus-related changes from non-consensus-related changes.
+4. Keep development branches compatible with mainnet.
+
+## Basic Rules:
+
+1. Development always happens in private feature-branches. The only exception is
+   a change that must be distinguished in the destination branch (typical
+   example: hardfork date in testnet).
+2. Features are merged after they are reasonably complete, i. e. they come with
+   unit tests that provide reasonable coverage and do not report any errors.
+    1. "Completed" features that are not consensus-related are merged into
+       "develop".
+    2. "Completed" features that are consensus-related are merged into the
+       "hardfork" branch, with a hardfork date in the far future.
+    3. All merges into "develop" or "hardfork" are performed via github PR's and
+       require review and approval from core developers (if the PR is created
+       by a core dev at least one other core dev must review and approve).
+    4. To maintain a clean history and make reviewing and merging easier,
+       feature branches must be rebased onto current "develop" (or "hardfork")
+       before creating a PR.
+    5. Merges are always done as real merges, not as fast-forwards, and not
+       squashed.
+3. Core devs coordinate regular merges from "develop" into "hardfork".
+4. Both "develop" and "hardfork" should always remain compatible with mainnet,
+   i. e. a full replay must be possible.
+
+## How To Create a Release
+
+
+For a release,
+
+1. a "release" branch is created based on "develop" or "hardfork".
+2. The "release" branch is merged into "testnet".
+3. For a hardfork release, the hardfork date is adapted directly on the
+   testnet branch.
+4. The "testnet" branch is tagged as test-<i>version</i>.
+5. Bugfixes for the release are created on the "release" branch and merged into
+   "testnet". Additional test-<i>version</i>s are tagged as needed.
+6. After sufficient testing, the release must be approved. In the case of a
+   hardfork release, witness approval is required.
+7. After approval, the mainnet hardfork date is decided and set in the "release"
+   branch.
+8. The "release" branch is merged into "master", and a *version* tag is created
+   on "master".
+9. The "release" branch is merged back into "develop" and "hardfork".
+10. The "release" branch is merged into "testnet". This will produce a merge
+    conflict for the hardfork dates, which must be resolved without changing the
+    testnet hardfork date.
+
+## How To Create an Emergency Fix
+
+An emergency fix may become necessary when a serious problem in mainnet is
+discovered. The goal here is to fix the problem as soon as possible, while
+keeping the risk for creating additional problems as low as possible.
+
+First of all, the problem must be analyzed and debugged. This happens,
+naturally, directly on the release version.
+
+Presumably the developer who creates the fix will work on his private master
+branch. That is OK. But for publishing the fix, the following steps should be
+taken:
+
+1. The fix is applied to the version of the "release" branch that was merged
+   into "master" when creating the broken release version.
+2. The "release" branch is merged into "master", and a *version* tag is created
+   on "master".
+3. Witnesses update to the new *version*, and production continues.
+4. A unit test is created on "develop" that reproduces the problem.
+5. The "release" branch is merged into "develop", and it is verified that the
+   fix resolves the problem, by running the unit test.
+6. The "release" branch is merged into "hardfork" and "testnet".
