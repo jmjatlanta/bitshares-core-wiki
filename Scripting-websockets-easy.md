@@ -17,7 +17,7 @@ Simply install by:
 Confirm the install by using the wsdump.py tool. This should do the same as wscat:
 
 ```
-root@NC-PH-1346-07:~# wsdump.py ws:/localhost:8090
+root@NC-PH-1346-07:~# wsdump.py ws://localhost:8090
 Press Ctrl+C to quit
 > {"method": "call", "params": [1, "login", ["", ""]], "id": 2}
 
