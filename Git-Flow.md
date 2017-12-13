@@ -68,6 +68,8 @@ For a release,
     conflict for the hardfork dates, which must be resolved without changing the
     testnet hardfork date.
 
+**Note:** Solving conflicts by github(web) will merge branches in unintended directions. Avoid solving this way, merge and resolve conflicts manually through the git command line.
+
 ## How To Create an Emergency Fix
 
 An emergency fix may become necessary when a serious problem in mainnet is
