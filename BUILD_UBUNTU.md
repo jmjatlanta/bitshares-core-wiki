@@ -48,11 +48,8 @@ Details [here](https://github.com/DECENTfoundation/DECENT-Network/issues/194).
 Steps to fix:
 
     cd ~/bitshares-core/libraries/fc/vendor/websocketpp
-
     git remote set-url origin https://github.com/DECENTfoundation/websocketpp.git
-
     git fetch
-
     git checkout 
 
 And then build BitShares Core.
