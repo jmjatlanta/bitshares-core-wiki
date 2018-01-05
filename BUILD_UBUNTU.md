@@ -43,7 +43,7 @@ Other steps are same to 14.04 LTS.
  
 If error `{"message":"Timer Expired"}` dropped then it could be issue with websocketpp in linux kernel > 4.4.
 
-Details: https://github.com/DECENTfoundation/DECENT-Network/issues/194
+Details [here](https://github.com/DECENTfoundation/DECENT-Network/issues/194).
  
 Steps to fix:
 
