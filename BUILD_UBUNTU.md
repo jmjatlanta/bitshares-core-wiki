@@ -37,3 +37,22 @@ Ubuntu 16.04 LTS ships with Boost 1.58 libraries, so no need to build from sourc
     sudo apt-get install libboost-all-dev
 
 Other steps are same to 14.04 LTS.
+
+
+## Error `{"message":"Timer Expired"}` in Ubuntu 16.04 LTS
+ 
+If error `{"message":"Timer Expired"}` dropped then it could be issue with websocketpp in linux kernel > 4.4.
+
+Details: https://github.com/DECENTfoundation/DECENT-Network/issues/194
+ 
+Steps to fix:
+
+    cd ~/bitshares-core/libraries/fc/vendor/websocketpp
+
+    git remote set-url origin https://github.com/DECENTfoundation/websocketpp.git
+
+    git fetch
+
+    git checkout 
+
+And then build BitShares Core.
