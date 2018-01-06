@@ -112,7 +112,7 @@ nmake -f ms\ntdll.mak install
 D:
 cd D:\bitshares\boost_1_57_0
 bootstrap
-.\b2
+.\b2.exe address-model=64
 ```
 
 #### Build project files for BitShares Core ####
