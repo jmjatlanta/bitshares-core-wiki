@@ -122,7 +122,7 @@ cd elasticsearch-5.6.3/
 ./bin/elasticsearch
 ```
 
-You can put this as a service, the binary haves a `--deamon` option, can run inside `screen` or any other option that suits you in order to keep the database running. 
+You can put this as a service, the binary haves a `--daemonize` option, can run inside `screen` or any other option that suits you in order to keep the database running. 
 
 Please note ES does not run a the root user, if you are a root user you need to first make a normal user account by:
 
