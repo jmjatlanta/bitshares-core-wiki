@@ -2,7 +2,7 @@
 The following dependencies were necessary for a clean install of Ubuntu 14.04 LTS:
 
     sudo apt-get update
-    sudo apt-get install cmake make libbz2-dev libdb++-dev libdb-dev libssl-dev openssl libreadline-dev autoconf libtool git ntp libcurl4-openssl-dev g++
+    sudo apt-get install cmake make libbz2-dev libdb++-dev libdb-dev libssl-dev openssl libreadline-dev autoconf libtool git ntp libcurl4-openssl-dev g++ libcurl4-openssl-dev
 
 ## Build Boost 1.57.0 
 
