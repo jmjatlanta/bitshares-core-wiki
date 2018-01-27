@@ -69,6 +69,7 @@ For a release,
     testnet hardfork date.
 
 **Note:** Solving conflicts by github(web) will merge branches in unintended directions. Avoid solving this way, merge and resolve conflicts manually through the git command line. Conflicts generally occur when merging release to testnet.
+
 **Note 2:** When creating tag for testnet do it from the command line with `git tag`. Github don't have the option to create a tag without a release. 
 
 ## How To Create an Emergency Fix
