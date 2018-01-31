@@ -132,7 +132,7 @@ flag tells the `witness_node` to produce on a chain with zero blocks or
 very old blocks.  We specify the `--enable-stale-production` parameter
 on the command line as we will not normally need it (although it can
 also be specified in the config file).
-The empty `--seed-nodes` is added to avoid conencting to the default seed nodes hardcoded for production.
+The empty `--seed-nodes` is added to avoid connecting to the default seed nodes hardcoded for production.
 
 Subsequent runs which connect to an existing witness node over the p2p
 network, or which get blockchain state from an existing data directory,
