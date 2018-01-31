@@ -124,7 +124,7 @@ signing blocks on a single node.
 
 Now run `witness_node` again:
 
-    programs/witness_node/witness_node --data-dir data/my-blockprod --enable-stale-production
+    programs/witness_node/witness_node --data-dir data/my-blockprod --enable-stale-production --seed-nodes "[]"
 
 Note that we need not specify `genesis.json` on the command line, since
 we now specify it in the config file.  The `--enable-stale-production`
@@ -132,6 +132,7 @@ flag tells the `witness_node` to produce on a chain with zero blocks or
 very old blocks.  We specify the `--enable-stale-production` parameter
 on the command line as we will not normally need it (although it can
 also be specified in the config file).
+The empty `--seed-nodes` is added to avoid connection to the default seed nodes hardcoded for production.
 
 Subsequent runs which connect to an existing witness node over the p2p
 network, or which get blockchain state from an existing data directory,
