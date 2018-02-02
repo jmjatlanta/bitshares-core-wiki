@@ -72,7 +72,7 @@ For a release,
 
 **Note 2:** When creating tag for testnet do it from the command line with `git tag`. Github don't have the option to create a tag without a release. media
 
-**Note 3: ** Do not mark releases as "pre release" unless there is a real new version coming immediately after. Never upgrade "pre release" to "release" as new emails to subscribers will not be sent when doing so.
+**Note 3:** Do not mark releases as "pre release" unless there is a real new version coming immediately after. Never upgrade "pre release" to "release" as new emails to subscribers will not be sent when doing so.
 
 ## How To Create an Emergency Fix
 
