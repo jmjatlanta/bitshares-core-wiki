@@ -101,24 +101,24 @@ install java 8:
 
 ### Install ES:
 
-Get version 5 file at: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.3.zip
+Get version 6 file at: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.0.zip
 
-**Note** Plugin dont currently work with elasticsearch last release, version 6.
+**Note** Plugin works with currently last stable version of elastic(6.2.0)
 
 Please do this as a non root user as ES will not run as root.
 
 download as: 
 
-`wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.3.zip`
+`wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.0.zip`
 
 unzip:
 
-`unzip elasticsearch-5.6.3.zip`
+`unzip elasticsearch-6.2.0.zip`
 
 and run:
 
 ```
-cd elasticsearch-5.6.3/
+cd elasticsearch-6.2.0.zip/
 ./bin/elasticsearch
 ```
 
@@ -180,7 +180,7 @@ A few minutes after the node start the first batch of 5000 ops will be inserted 
 If you only have command line available you can query the database directly throw curl as:
 
 ```
-root@NC-PH-1346-07:~/bitshares/elastic/bitshares-core# curl -X GET 'http://localhost:9200/graphene-*/data/_count?pretty=true' -d '
+root@NC-PH-1346-07:~/bitshares/elastic/bitshares-core# curl -X GET 'http://localhost:9200/graphene-*/data/_count?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"match_all": {}}] }
@@ -203,10 +203,10 @@ root@NC-PH-1346-07:~/bitshares/elastic/bitshares-core#
 
 **Important: Replay with ES plugin will be always slower than the "save to ram" `account_history_plugin` so expect to wait more to be in sync than usual.**
 
-A syncronized node will look like this(screen capture 20/12/2017):
+A synchronized node will look like this(screen capture 20/12/2017):
 
 ```
-root@NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/graphene-*/data/_count?pretty=true' -d '
+root@NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/graphene-*/data/_count?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"match_all": {}}] }
@@ -265,20 +265,18 @@ yellow open graphene-2016-11 i00upS94Ruii1zJYXI0S9Q 5 1   495556 0 367.3mb 367.3
 root@NC-PH-1346-07:~# 
 ```
 
-If you dont see any index here then something is wrong with the bitshares-core node setup with elasticsearch plugin. Make sure you are running elasticsearch version 5.X.
-
-Todo: Make plugin work with version 5 of elasticsearch too.
+If you don't see any index here then something is wrong with the bitshares-core node setup with elasticsearch plugin. 
 
 ## Usage
 
-After your node is in sync you are in posesion of a full node without the ram issues. A syncronized witness_node with ES will be using less than 10 gigs of ram:
+After your node is in sync you are in possession of a full node without the ram issues. A synchronized witness_node with ES will be using less than 10 gigs of ram:
 
 ```
  total          9817628K
 root@NC-PH-1346-07:~# pmap 2183
 ```
 
-Compare against a tradtional full node:
+Compare against a traditional full node:
 
 ```
  total         60522044K
@@ -302,7 +300,7 @@ https://github.com/bitshares/bitshares-ui/issues/68
 This is one of the issues that has been requested constantly. It can be easily queried with ES plugin by calling the _search endpoint doing:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
+curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "account_history.account.keyword": "1.2.282"}}, {"range": {"block_data.block_time": {"gte": "2015-10-26T00:00:00", "lte": "2015-10-29T23:59:59"}}}] }
@@ -317,7 +315,7 @@ curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
 https://github.com/bitshares/bitshares-core/issues/61
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
+curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "account_history.account.keyword": "1.2.356589"}}, {"range": {"block_data.block_num": {"gte": "17824289", "lte": "17824290"}                                                                                                                  
@@ -334,7 +332,7 @@ Refs: https://github.com/bitshares/bitshares-core/pull/373
 The `get_transaction_id` can be done as:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
+curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "block_data.block_num": 19421114}},{"term": { "operation_history.trx_in_block": 0}}] }
@@ -346,7 +344,7 @@ curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
 The above will return all ops inside trx, if you only need the trx_id field you can add `source` and just return the fields you need:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
+curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "_source": ["block_data.trx_id"],
     "query" : {
@@ -359,7 +357,7 @@ curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
 The `get_transaction_from_id` is very easy:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -d '
+curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "block_data.trx_id": "6f2d5064637391089127aa9feb36e2092347466c"}}] }
