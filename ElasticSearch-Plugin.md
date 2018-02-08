@@ -370,7 +370,7 @@ curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Cont
 
 The reader will need to learn more about elasticsearch and lucene query language in order to make more complex queries.
 
-All needed can be found at https://www.elastic.co/guide/en/elasticsearch/reference/5.5/index.html
+All needed can be found at https://www.elastic.co/guide/en/elasticsearch/reference/6.2/index.html
 
 By the same team of elasticsearch there is a front end named `kibana` (https://www.elastic.co/products/kibana). It is very easy to install and can do pretty good stuff like getting very detailed stats of the blockchain network.
 
