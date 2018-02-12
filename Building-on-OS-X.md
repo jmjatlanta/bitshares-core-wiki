@@ -65,3 +65,7 @@ We must now tell cmake where these libraries are. Instead of the "cmake ." menti
    ```
    cmake -DBOOST_ROOT=/usr/local/opt/boost@1.60 -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl .
    ```
+and then proceed with the normal
+   ```
+   make
+   ```
