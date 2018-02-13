@@ -74,7 +74,7 @@ Creating data directory
 
 We will a new data directory for our witness as follows:
 
-    programs/witness_node/witness_node --data-dir data/my-blockprod --genesis-json genesis/my-genesis.json
+    programs/witness_node/witness_node --data-dir data/my-blockprod --genesis-json genesis/my-genesis.json --seed-nodes "[]"
 
 The `data/my-blockprod` directory does not exist, it will be created
 by the witness node.
