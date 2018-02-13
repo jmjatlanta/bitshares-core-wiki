@@ -100,7 +100,7 @@ and set the following settings, uncommenting them if necessary:
     p2p-endpoint = 127.0.0.1:11010
     rpc-endpoint = 127.0.0.1:11011
 
-    genesis-json = my-genesis.json
+    genesis-json = genesis/my-genesis.json
 
     private-key = ["GPH6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV","5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"]
 
