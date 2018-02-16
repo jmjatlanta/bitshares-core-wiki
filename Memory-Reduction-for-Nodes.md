@@ -96,5 +96,4 @@ root@alfredo:~# pmap 28685
 
 ## Special notes
 
-- All the described options except `--plugins` are currently in `master` branch of `bitshares-core`. `--plugins` is in `develop` branch. It will likely be merged to `master` in next release.
-- A new option could be `untrack accounts`. we could identify the biggers and run a node with the account history of bots out.
+- A new option could be `untrack-account`. we could identify the biggers and run a node with the account history of bots out.
