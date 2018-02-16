@@ -20,13 +20,6 @@ Options for plugin account_history:
 ...
 ```
 
-/*
-Using develop branch to have the `--plugins` option (this step will be removed after release):
-```
-git checkout -t origin/develop
-```
-*/
-
 ## --plugins
 
 Allows to run only the plugins you want. 
