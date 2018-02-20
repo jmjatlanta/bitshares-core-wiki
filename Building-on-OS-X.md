@@ -29,7 +29,7 @@ BitShares OS X Build Instructions
    brew install google-perftools
    ```
 
-7. Clone the Graphene repository:
+7. Clone the Bitshares repository:
    ```
    git clone https://github.com/bitshares/bitshares-core.git
    cd bitshares-core
