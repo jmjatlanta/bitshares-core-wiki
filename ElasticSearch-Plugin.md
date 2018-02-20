@@ -224,6 +224,7 @@ root@NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/graphene-*/data/_count?
 }
 root@NC-PH-1346-07:~# 
 ```
+**Important: We  have reports of the need of 160G of disk space at 2018-02-20 to save all the history and the logs for them. Please make sure you have enough disk before synchronizing.**
 
 ## Indexes
 
