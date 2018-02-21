@@ -268,6 +268,29 @@ root@NC-PH-1346-07:~#
 
 If you don't see any index here then something is wrong with the bitshares-core node setup with elasticsearch plugin. 
 
+## Pre-define settings
+
+By default data indexes will be created with default elasticsearch settings. Node owner can tweak the default settings for all the `graphene-*` indexes before the addition of any data.
+
+An example of a good index configuration is as follows:
+
+```
+$ curl -XPUT 'http://localhost:9200/_template/graphene' -d '{
+  "index_patterns" : ["graphene-*"],
+  "settings": { "number_of_shards": 2,
+    "index": {
+      "translog": {
+        "retention": {
+          "size": "512mb", "age": "300s"
+        }
+      }
+    }
+  }
+}' -H 'Content-Type: application/json
+```
+@HarukaMa said:
+"This template would apply those settings to all newly created index prefixed with graphene-. It's one time so there will be no need to specify them for every new index. In this settings I have also reduced translog age to 15min to minimize the storage usage, but I think that's optional." 
+
 ## Usage
 
 After your node is in sync you are in possession of a full node without the ram issues. A synchronized witness_node with ES will be using less than 10 gigs of ram:
