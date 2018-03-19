@@ -224,7 +224,9 @@ root@NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/graphene-*/data/_count?
 }
 root@NC-PH-1346-07:~# 
 ```
-**Important: We  have reports of the need of 160G of disk space at 2018-02-20 to save all the history and the logs for them. Please make sure you have enough disk before synchronizing.**
+**Important: We  have reports of the need of more than 200G of disk space at 2018-03-20 to save all the history and the logs for them. Please make sure you have enough disk before synchronizing.**
+
+**Important: The synchronization of a full live blockchain from scratch can take up to 3 days! Please be prepared for big waiting time.**
 
 ## Indexes
 
