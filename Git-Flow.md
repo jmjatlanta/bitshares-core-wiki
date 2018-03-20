@@ -50,7 +50,12 @@ for these additional needs:
 
 For a release,
 
-1. a "release" branch is created based on "develop" or "hardfork".
+0. Check whether need to bump `DB_VERSION` to force a replay after upgraded:
+   if there is a data schema change, or logic change that affects historical
+   data, the answer is yes.
+   FC version usually has been bumped already during development, but it
+   doesn't harm if check again.
+1. A "release" branch is created based on "develop" or "hardfork".
 2. The "release" branch is merged into "testnet".
 3. For a hardfork release, the hardfork date is adapted directly on the
    testnet branch.
