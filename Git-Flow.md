@@ -77,9 +77,11 @@ For a release,
 
 **Note:** Solving conflicts by github(web) will merge branches in unintended directions. Avoid solving this way, merge and resolve conflicts manually through the git command line. Conflicts generally occur when merging release to testnet.
 
-**Note 2:** When creating tag for testnet do it from the command line with `git tag`. Github don't have the option to create a tag without a release. media
+**Note 2:** Follow command line github suggestion to resolve conflicts but at the end you will not have permission to merge directly to testnet, can`t either push the fix to release. Create a new branch and push there, create a new pull request against `testnet` and `new_branch`, merge `new_branch` to `testnet` and `release` will be automatically added to the merge.
 
-**Note 3:** Do not mark releases as "pre release" unless there is a real new version coming immediately after. Never upgrade "pre release" to "release" as new emails to subscribers will not be sent when doing so.
+**Note 3:** When creating tag for testnet do it from the command line with `git tag`. Github don't have the option to create a tag without a release.
+
+**Note 4:** Do not mark releases as "pre release" unless there is a real new version coming immediately after. Never upgrade "pre release" to "release" as new emails to subscribers will not be sent when doing so.
 
 ## How To Create an Emergency Fix
 
