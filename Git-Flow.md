@@ -81,7 +81,9 @@ For a release,
 
 **Note 3:** When creating tag for testnet do it from the command line with `git tag`. Github don't have the option to create a tag without a release.
 
-**Note 4:** Do not mark releases as "pre release" unless there is a real new version coming immediately after. Never upgrade "pre release" to "release" as new emails to subscribers will not be sent when doing so.
+**Note 4:** <strike>the tag commit can be changed</strike>. Don't change tags on github. This is a source of confusion, and of irreproducible bug reports. Make new one is better (ex: test-2.0.180321b or wait 1 day).
+
+**Note 5:** Do not mark releases as "pre release" unless there is a real new version coming immediately after. Never upgrade "pre release" to "release" as new emails to subscribers will not be sent when doing so.
 
 ## How To Create an Emergency Fix
 
