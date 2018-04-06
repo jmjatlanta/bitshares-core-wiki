@@ -12,10 +12,10 @@ Collaboration within open source projects is key to advancing their development 
 
 ## CONCEPTS
 
-Projects
-Milestones
-Issues
-Tasks
-Labels
-Wiki
+- Projects
+- Milestones
+- Issues
+- Tasks
+- Labels
+- Wiki
 
