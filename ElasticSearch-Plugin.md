@@ -118,7 +118,7 @@ unzip:
 and run:
 
 ```
-cd elasticsearch-6.2.0.zip/
+cd elasticsearch-6.2.0/
 ./bin/elasticsearch
 ```
 
