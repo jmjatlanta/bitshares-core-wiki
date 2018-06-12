@@ -38,7 +38,7 @@ git submodule update --init --recursive
 
 * Boost
 
-   BitShares Core depends on the Boost libraries version 1.57 ~ 1.60.  You can build them from
+   BitShares Core depends on the Boost libraries version 1.57 ~ 1.65.  You can build them from
    source.
    * download boost source from http://www.boost.org/users/download/
    * unzip it to the base directory `D:\bitshares`.
