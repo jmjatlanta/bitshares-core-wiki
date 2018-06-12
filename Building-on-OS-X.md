@@ -42,7 +42,7 @@ BitShares OS X Build Instructions
    make
    ```
 Notes:
-As mentioned elsewhere, Bitshares depends on the third-party libraries "Boost" and "OpenSSL". These libraries need to be in certain version ranges. At the moment, Boost needs to be between 1.57 and 1.63. OpenSSL needs to be in the 1.0.x range.
+As mentioned elsewhere, Bitshares depends on the third-party libraries "Boost" and "OpenSSL". These libraries need to be in certain version ranges. At the moment, Boost needs to be between 1.57 and 1.65. OpenSSL needs to be in the 1.0.x range.
 
 Boost:
 You can check which version(s) of boost you have by asking brew:
