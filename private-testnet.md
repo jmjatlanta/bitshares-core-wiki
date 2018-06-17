@@ -198,8 +198,8 @@ to LTM, use the `upgrade_account` command:
 We can now register an account.  The `register_account` command
 allows you to register an account using only a public key:
 
-    register_account alpha GPH4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF GPH4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF nathan nathan 0 true
-    transfer nathan alpha 100000 CORE "here is the cash" true
+    register_account alpha BTS4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF BTS4zSJHx7D84T1j6HQ7keXWdtabBBWJxvfJw72XmEyqmgdoo1njF nathan nathan 0 true
+    transfer nathan alpha 100000 BTS "here is the cash" true
 
 We can now open a new wallet for `alpha` user:
 
