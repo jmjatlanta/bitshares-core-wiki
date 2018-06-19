@@ -1,5 +1,5 @@
 ### Building
-**BitShares requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`. Example:**
+**BitShares requires a 64-bit operating system to build. BitShares requires an [OpenSSL](https://www.openssl.org/) version in the 1.0.x series. OpenSSL 1.1.0 and newer are NOT supported. If your system OpenSSL version is newer, then you will need to manually provide an older version of OpenSSL and specify it to CMake using `-DOPENSSL_INCLUDE_DIR`, `-DOPENSSL_SSL_LIBRARY`, and `-DOPENSSL_CRYPTO_LIBRARY`. Example:**
   
 ```
 cmake -DOPENSSL_INCLUDE_DIR=/usr/include/openssl-1.0 -DOPENSSL_SSL_LIBRARY=/usr/lib/openssl-1.0/libssl.so -DOPENSSL_CRYPTO_LIBRARY=/usr/lib/openssl-1.0/libcrypto.so .
@@ -11,7 +11,7 @@ cmake -DOPENSSL_INCLUDE_DIR=/usr/include/openssl-1.0 -DOPENSSL_SSL_LIBRARY=/usr/
 cmake -DBOOST_ROOT=~/boost160 .
 ```
 
-* [[Ubuntu Linux|BUILD_UBUNTU]]
+* [[Ubuntu (64-bit) Linux|BUILD_UBUNTU]]
 * [[OS X|Building-on-OS-X]]
 * [[Windows|BUILD_WIN32]]
 * [[Web and light wallets|Web-and-light-wallets-release-procedure]]
