@@ -1,13 +1,13 @@
-# Ubuntu 14.04 LTS Build and Install Instructions
-The following dependencies were necessary for a clean install of Ubuntu 14.04 LTS:
+# Ubuntu 14.04 LTS (64-bit) Build and Install Instructions
+The following dependencies were necessary for a clean install of Ubuntu 14.04 LTS (64-bit):
 
     sudo apt-get update
     sudo apt-get install cmake make libbz2-dev libdb++-dev libdb-dev libssl-dev openssl libreadline-dev autoconf libtool git ntp libcurl4-openssl-dev g++ libcurl4-openssl-dev
 
 ## Build Boost 1.57.0 
 
-The Boost which ships with Ubuntu 14.04 is too old.  You need to download the Boost tarball for Boost 1.57.0
-(Note, 1.58.0 requires C++14 and will not build on Ubuntu 14.04 LTS; this requirement was an accident, see [this mailing list post](http://boost.2283326.n4.nabble.com/1-58-1-bugfix-release-necessary-td4674686.html)).
+The Boost which ships with Ubuntu 14.04 LTS (64-bit) is too old.  You need to download the Boost tarball for Boost 1.57.0
+(Note, 1.58.0 requires C++14 and will not build on Ubuntu 14.04 LTS (64-bit); this requirement was an accident, see [this mailing list post](http://boost.2283326.n4.nabble.com/1-58-1-bugfix-release-necessary-td4674686.html)).
 
     BOOST_ROOT=$HOME/opt/boost_1_57_0
     sudo apt-get update
@@ -30,16 +30,16 @@ The Boost which ships with Ubuntu 14.04 is too old.  You need to download the Bo
     make 
 
 
-# Ubuntu 16.04 LTS
+# Ubuntu 16.04 LTS (64-bit) 
 
-Ubuntu 16.04 LTS ships with Boost 1.58 libraries, so no need to build from source.
+Ubuntu 16.04 LTS (64-bit) ships with Boost 1.58 libraries, so no need to build from source.
 
     sudo apt-get install libboost-all-dev
 
-Other steps are same to 14.04 LTS.
+Other steps are same to 14.04 LTS (64-bit) .
 
 
-## Error `{"message":"Timer Expired"}` in Ubuntu 16.04 LTS
+## Error `{"message":"Timer Expired"}` in Ubuntu 16.04 LTS (64-bit) 
  
 If error `{"message":"Timer Expired"}` dropped then it could be issue with websocketpp in linux kernel > 4.4.
 
