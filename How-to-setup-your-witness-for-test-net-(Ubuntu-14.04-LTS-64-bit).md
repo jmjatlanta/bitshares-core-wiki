@@ -1,4 +1,4 @@
-The following instructions covers the setup of a witness in Ubuntu 14.04. The instructions are specific for the Test 5 release, but should be easily ported to other releases.
+The following instructions covers the setup of a witness in Ubuntu 14.04 LTS (64-bit). The instructions are specific for the Test 5 release, but should be easily ported to other releases.
 
 You can get latest version with chain id, genesis, and github tag here https://github.com/cryptonomex/graphene/releases
 
