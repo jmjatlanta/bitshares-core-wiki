@@ -213,7 +213,7 @@ The ES plugin have the following parameters passed by command line:
 
 ES plugin is not active by default, we need to start it with the `plugins` parameter. An example of starting a node with ES plugin on the simplest form with all the default options will be:
 
-`programs/witness_node/witness_node --plugins "witness elasticsearch"
+`programs/witness_node/witness_node --plugins "witness elasticsearch`
 
 **Note** `elasticsearch` plugin and `account_history` plugin can not run the 2 at the same time.
 
