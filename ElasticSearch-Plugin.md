@@ -205,8 +205,9 @@ The ES plugin have the following parameters passed by command line:
 - `elasticsearch-node-url` - The url od elasticsearch - default: `http://localhost:9200/`
 - `elasticsearch-bulk-replay` - The number of lines(ops * 2) to send to database in replay state - default: `10000`
 - `elasticsearch-bulk-sync` - The number of lines(ops * 2) to send to database at syncronized state - default: `100` 
-- `elasticsearch-logs` - Save logs to database - default: `true`
-- `elasticsearch-visitor` - Index visitor additional inside op data - default: `true`
+- `elasticsearch-visitor` - Index visitor additional inside op data - default: `false`
+- `elasticsearch-basic-auth` - Send auth data i nthe form "username:password" - default: no auth ""
+- `elasticsearch-index-prefix` - A prefix for your indexes - default: "bitshares-"
 
 ### Starting node
 
