@@ -247,10 +247,10 @@ root@NC-PH-1346-07:~/bitshares/elastic/bitshares-core#
 
 **Important: Replay with ES plugin will be always slower than the "save to ram" `account_history_plugin` so expect to wait a lot more to be in sync than usual. With the recommended hardware the synchronization can take 30 hours.**
 
-A synchronized node will look like this(screen capture 20/12/2017):
+A synchronized node will look like this(screen capture 02/08/2018):
 
 ```
-root@NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/graphene-*/data/_count?pretty=true' -H 'Content-Type: application/json' -d '
+root@NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/bitshares-*/data/_count?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"match_all": {}}] }
@@ -258,19 +258,17 @@ root@NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/graphene-*/data/_count?
 }
 '
 {
-  "count" : 107156155,
+  "count" : 391390823,
   "_shards" : {
-    "total" : 135,
-    "successful" : 135,
+    "total" : 175,
+    "successful" : 175,
     "skipped" : 0,
     "failed" : 0
   }
 }
 root@NC-PH-1346-07:~# 
 ```
-**Important: We  have reports of the need of more than 200G of disk space at 2018-03-20 to save all the history and the logs for them. Please make sure you have enough disk before synchronizing.**
-
-**Important: The synchronization of a full live blockchain from scratch can take up to 3 days! Please be prepared for big waiting time.**
+**Important: We  have reports of the need of more than 250G of disk space at 2018-08-02 to save all the history and the logs for them. Please make sure you have enough disk before synchronizing.**
 
 ## Indexes
 
@@ -280,35 +278,41 @@ List your indexes as:
 
 ```
 NC-PH-1346-07:~# curl -X GET 'http://localhost:9200/_cat/indices' 
-yellow open logs             PvSvmtcFSCCF_-3HBjJaXg 5 1   358808 0   5.8gb   5.8gb
-yellow open graphene-2017-09 ZUUi5xeuTeSb7QPP1Pnk0A 5 1 11075939 0   8.4gb   8.4gb
-yellow open graphene-2017-04 HtCKnM_UTLyDWBR7-PopGQ 5 1  3316120 0   2.4gb   2.4gb
-yellow open graphene-2017-10 SAUFtI0CRx6MnISukeqA-Q 5 1  9326346 0   7.1gb   7.1gb
-yellow open graphene-2017-07 CTWIim51SZy0Ir55sjlT7w 5 1 17890903 0  12.8gb  12.8gb
-yellow open graphene-2017-01 sna676yfR1OT5ww9HRiVZw 5 1  1197124 0 917.7mb 917.7mb
-yellow open graphene-2016-06 FZ_FyTLwQCKObjKgLQcF3w 5 1   656358 0 473.9mb 473.9mb
-yellow open graphene-2017-03 Ogsw0PlbRAWeHRS86o4vTA 5 1  2167788 0   1.6gb   1.6gb
-yellow open graphene-2017-11 -9-oz-DRRTOMLdZVOUV5xw 5 1 14107174 0  10.8gb  10.8gb
-yellow open graphene-2017-02 ZE3LxFWkTeO7CBsxMMmIFQ 5 1  1104282 0 822.4mb 822.4mb
-yellow open graphene-2017-12 bZRFc5aLSlqbBMYEnKmF7Q 5 1  8758628 0     8gb     8gb
-yellow open graphene-2015-11 iXyIZkj_T0O-NjPxEf0L_A 5 1   301079 0 193.1mb 193.1mb
-yellow open graphene-2017-05 ipVA6yEKTH68nEucBIZP7w 5 1 10278394 0   7.5gb   7.5gb
-yellow open graphene-2017-08 Z2C_pciwQSevJzcl9kRhhQ 5 1  9916248 0   7.5gb   7.5gb
-yellow open graphene-2016-04 vtQSi-kdQ0OblRq2naPu-A 5 1   413798 0 297.4mb 297.4mb
-yellow open graphene-2016-12 hsohZ0cfTGSPPVWUM_Fgeg 5 1   917034 0 711.3mb 711.3mb
-yellow open graphene-2016-01 PzjbXCXFShCzZFyTBgv2IQ 5 1   372772 0 247.1mb 247.1mb
-yellow open graphene-2016-03 8j1yyLIeTUWXb6TZntqQhg 5 1   597461 0   431mb   431mb
-yellow open graphene-2016-08 6qBByeOPSkCDqWYrOR_qPg 5 1   551835 0 389.3mb 389.3mb
-yellow open graphene-2015-10 DTHVtNpIT2KAoMiO4-c61w 5 1   161004 0 122.2mb 122.2mb
-yellow open graphene-2017-06 Jei8GvRYSkif4zZ-V9mFRg 5 1 10795239 0   8.1gb   8.1gb
-yellow open .kibana          8q5behLlQRi_hxKSWurYDw 1 1        7 0  42.7kb  42.7kb
-yellow open graphene-2016-05 s7Ie2crTS_uismCP5U2dIQ 5 1   498493 0 353.4mb 353.4mb
-yellow open graphene-2016-07 7yx03R2hQX6XyOR8Sdu7ZA 5 1   609087 0 435.8mb 435.8mb
-yellow open graphene-2016-02 0SVSrhn3QK2AxWNv9NRASQ 5 1   468174 0 321.8mb 321.8mb
-yellow open graphene-2016-10 C28juWi8Rf-1A0h2YnShBw 5 1   416570 0 299.9mb 299.9mb
-yellow open graphene-2016-09 3rHI_5HFR3SFl9bhroL5EA 5 1   409164 0 296.1mb 296.1mb
-yellow open graphene-2015-12 aLlUxO_tSG-CMC3SPcFgkw 5 1   349985 0 222.4mb 222.4mb
-yellow open graphene-2016-11 i00upS94Ruii1zJYXI0S9Q 5 1   495556 0 367.3mb 367.3mb
+yellow open bitshares-2018-02 voS1uchzSxqxqkiaKNrEYg 5 1  18984984 0  10.8gb  10.8gb
+yellow open bitshares-2018-06 D6wyX58lRyG3QOflmPwJZw 5 1  28514130 0  15.6gb  15.6gb
+yellow open bitshares-2017-10 73xRTA-fSTm479H4kOENuw 5 1   9326346 0   5.2gb   5.2gb
+yellow open bitshares-2016-08 -MMp3VGGRZqG2YL1LQunbg 5 1    551835 0 270.1mb 270.1mb
+yellow open bitshares-2016-07 Ao56gO9LQ-asMhX50rbcCg 5 1    609087 0 303.2mb 303.2mb
+yellow open bitshares-2018-05 9xuof-PiRQWburpW8ZXHVg 5 1  29665610 0  17.3gb  17.3gb
+yellow open bitshares-2017-01 SpfwEzGcSoy9Hd6c6fzv2g 5 1   1197124 0   659mb   659mb
+yellow open bitshares-2017-12 tF5af4OvTLqcx3IYUJSQig 5 1  13244366 0   7.5gb   7.5gb
+yellow open bitshares-2016-03 yy91IvyATOCEoFHjgDbalg 5 1    597461 0 297.4mb 297.4mb
+yellow open bitshares-2015-12 z-ZAZqHsQL2EDNpf3_ghGA 5 1    349985 0 151.3mb 151.3mb
+yellow open bitshares-2017-07 OOr_xW4STsCm3sev1xtTRQ 5 1  17890903 0   9.6gb   9.6gb
+yellow open bitshares-2016-04 jt9q50ADQuylV4l25zGAaw 5 1    413798 0 205.6mb 205.6mb
+yellow open bitshares-2016-11 mWz7DpjSQyqJ_rL8gtMqWw 5 1    495556 0   260mb   260mb
+yellow open bitshares-2016-12 2qht_wrXTUmNqDvczpHYzw 5 1    917034 0 506.6mb 506.6mb
+yellow open bitshares-2016-10 vAMb0kW6Stqz6CNbuu7PEQ 5 1    416570 0 208.8mb 208.8mb
+yellow open bitshares-2015-11 ETNFuF3sTPe-gTSzX3bdIg 5 1    301079 0 131.9mb 131.9mb
+yellow open bitshares-2017-08 73Q2Asw-Rf228oQLoSCLGw 5 1   9916248 0   5.6gb   5.6gb
+yellow open bitshares-2016-05 3c95AvKcQk2puBwVt_HIqQ 5 1    498493 0   246mb   246mb
+yellow open bitshares-2017-02 lsiiz7PmS2q9_P2BQpNkNQ 5 1   1104282 0 586.7mb 586.7mb
+yellow open bitshares-2017-11 4pqwIRdWSwSe5198YNz-Nw 5 1  14107174 0     8gb     8gb
+yellow open bitshares-2018-07 fdmfXLqSTESODyLI_7cjXg 5 1 133879948 0  51.3gb  51.3gb
+yellow open bitshares-2016-06 Is11IdcnT8mfBPpoLUjJyw 5 1    656358 0 330.3mb 330.3mb
+yellow open bitshares-2018-04 MEA8fCsgSbOVXa0Z05cfsA 5 1  20940461 0  11.9gb  11.9gb
+yellow open bitshares-2018-03 fMjxhFwHSP-6ewrl0Ns6ZQ 5 1  20335546 0    12gb    12gb
+yellow open bitshares-2017-09 o-b2Bf3LR0-J1kUiv4FpHA 5 1  11075939 0   6.3gb   6.3gb
+yellow open bitshares-2018-01 jw9rYlmTSvuLC1hHcYyU4Q 5 1  19396703 0  11.2gb  11.2gb
+yellow open bitshares-2018-08 EDRxQvxhQJe3Vam_FxZMWg 5 1   8038498 0     3gb     3gb
+yellow open bitshares-2016-09 fo2AL0y7T_q_HtXEYCv35Q 5 1    409164 0 203.4mb 203.4mb
+yellow open bitshares-2016-01 3sjjs-4oQMm5HG-vUTuyoA 5 1    372772 0 168.7mb 168.7mb
+yellow open bitshares-2017-03 ZxjWksRyTaGstm6T2Kxl9A 5 1   2167788 0   1.1gb   1.1gb
+yellow open bitshares-2016-02 toWbFwI-RB2wEGrR8873rQ 5 1    468174 0 222.7mb 222.7mb
+yellow open bitshares-2017-05 IEZQ-rtmQU2kKNcRb58Egg 5 1  10278394 0   5.6gb   5.6gb
+yellow open bitshares-2017-04 S1h2eBGiS3quNJU7CqPR7Q 5 1   3316120 0   1.8gb   1.8gb
+yellow open bitshares-2017-06 0HYkECRbSwGDrmDFof8nqA 5 1  10795239 0     6gb     6gb
+yellow open bitshares-2015-10 XyKOlrTWSK6vQgdXm8SAtQ 5 1    161004 0  84.5mb  84.5mb
 root@NC-PH-1346-07:~# 
 ```
 
@@ -316,44 +320,22 @@ If you don't see any index here then something is wrong with the bitshares-core 
 
 ## Pre-define settings
 
-By default data indexes will be created with default elasticsearch settings. Node owner can tweak the default settings for all the `graphene-*` indexes before the addition of any data.
+By default data indexes will be created with default elasticsearch settings. Node owner can tweak the default settings for all the `bitshares-*` indexes before the addition of any data.
 
 An example of a good index configuration is as follows:
 
 ```
-$ curl -XPUT 'http://localhost:9200/_template/graphene' -d '{
-  "index_patterns" : ["graphene-*"],
-  "settings": { "number_of_shards": 2,
-    "index": {
-      "translog": {
-        "retention": {
-          "size": "512mb", "age": "300s"
-        }
-      }
-    }
-  }
-}' -H 'Content-Type: application/json
+todo
 ```
-@HarukaMa said:
-"This template would apply those settings to all newly created index prefixed with graphene-. It's one time so there will be no need to specify them for every new index. In this settings I have also reduced translog age to 15min to minimize the storage usage, but I think that's optional." 
 
 ## Usage
 
 After your node is in sync you are in possession of a full node without the ram issues. A synchronized witness_node with ES will be using less than 10 gigs of ram:
 
 ```
- total          9817628K
+ total          8604280K
 root@NC-PH-1346-07:~# pmap 2183
 ```
-
-Compare against a traditional full node:
-
-```
- total         60522044K
-[bitshares@lantea ~]$
-```
-
-Please note start command was with `markets_history` plugin activated, only consensus data should use even less than 10 gigs. 
 
 What client side apps can do with this new data is kind of unlimited to client developer imagination but lets check some real world examples to see the benefits of this new feature.
 
@@ -370,7 +352,7 @@ https://github.com/bitshares/bitshares-ui/issues/68
 This is one of the issues that has been requested constantly. It can be easily queried with ES plugin by calling the _search endpoint doing:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
+curl -X GET 'http://localhost:9200/bitshares-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "account_history.account.keyword": "1.2.282"}}, {"range": {"block_data.block_time": {"gte": "2015-10-26T00:00:00", "lte": "2015-10-29T23:59:59"}}}] }
@@ -385,7 +367,7 @@ curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Cont
 https://github.com/bitshares/bitshares-core/issues/61
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
+curl -X GET 'http://localhost:9200/bitshares-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "account_history.account.keyword": "1.2.356589"}}, {"range": {"block_data.block_num": {"gte": "17824289", "lte": "17824290"}                                                                                                                  
@@ -402,7 +384,7 @@ Refs: https://github.com/bitshares/bitshares-core/pull/373
 The `get_transaction_id` can be done as:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
+curl -X GET 'http://localhost:9200/bitshares-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "block_data.block_num": 19421114}},{"term": { "operation_history.trx_in_block": 0}}] }
@@ -414,7 +396,7 @@ curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Cont
 The above will return all ops inside trx, if you only need the trx_id field you can add `source` and just return the fields you need:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
+curl -X GET 'http://localhost:9200/bitshares-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "_source": ["block_data.trx_id"],
     "query" : {
@@ -427,7 +409,7 @@ curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Cont
 The `get_transaction_from_id` is very easy:
 
 ```
-curl -X GET 'http://localhost:9200/graphene-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
+curl -X GET 'http://localhost:9200/bitshares-*/data/_search?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"term": { "block_data.trx_id": "6f2d5064637391089127aa9feb36e2092347466c"}}] }
