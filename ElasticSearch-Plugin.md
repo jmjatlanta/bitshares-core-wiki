@@ -211,20 +211,20 @@ The ES plugin have the following parameters passed by command line:
 
 ### Starting node
 
-ES plugin is not active by default, we need to start it with the `plugins` parameter. An example of starting a node with ES plugin may be:
+ES plugin is not active by default, we need to start it with the `plugins` parameter. An example of starting a node with ES plugin on the simplest form with all the default options will be:
 
-`programs/witness_node/witness_node --data-dir data/my-blockprod --rpc-endpoint "127.0.0.1:8090" --plugins "witness elasticsearch market_history" --elasticsearch-bulk-replay 10000 --elasticsearch-logs true --elasticsearch-visitor true`
+`programs/witness_node/witness_node --plugins "witness elasticsearch"
 
 **Note** `elasticsearch` plugin and `account_history` plugin can not run the 2 at the same time.
 
 ### Checking if it is working
 
-A few minutes after the node start the first batch of 5000 ops will be inserted to the database. If you are in a desktop linux you may want to install https://github.com/mobz/elasticsearch-head and see the database from the web browser to make sure if it is working. This is optional.
+A few minutes after the node start the first batch of 5000 ops will be inserted to the database. If you are in a desktop linux you may want to install https://github.com/mobz/elasticsearch-head (only works with elasticsearch 5) and see the database from the web browser to make sure if it is working. This is optional.
 
 If you only have command line available you can query the database directly throw curl as:
 
 ```
-root@NC-PH-1346-07:~/bitshares/elastic/bitshares-core# curl -X GET 'http://localhost:9200/graphene-*/data/_count?pretty=true' -H 'Content-Type: application/json' -d '
+root@NC-PH-1346-07:~/bitshares/elastic/bitshares-core# curl -X GET 'http://localhost:9200/bitshares-*/data/_count?pretty=true' -H 'Content-Type: application/json' -d '
 {
     "query" : {
         "bool" : { "must" : [{"match_all": {}}] }
@@ -245,7 +245,7 @@ root@NC-PH-1346-07:~/bitshares/elastic/bitshares-core#
 
 360000 records are inserted at this point of the replay in ES, means it is working.
 
-**Important: Replay with ES plugin will be always slower than the "save to ram" `account_history_plugin` so expect to wait more to be in sync than usual.**
+**Important: Replay with ES plugin will be always slower than the "save to ram" `account_history_plugin` so expect to wait a lot more to be in sync than usual. With the recommended hardware the synchronization can take 30 hours.**
 
 A synchronized node will look like this(screen capture 20/12/2017):
 
