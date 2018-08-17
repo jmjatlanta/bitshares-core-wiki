@@ -15,7 +15,7 @@ BitShares OS X Build Instructions
 
 4. Install dependencies:
    ```
-   brew install boost cmake git openssl autoconf automake 
+   brew install boost cmake git openssl autoconf automake libtool 
    brew link --force openssl 
    ```
 
