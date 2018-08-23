@@ -43,6 +43,8 @@ The Boost which ships with Ubuntu 14.04 LTS (64-bit) is too old.  You need to do
     ./bootstrap.sh "--prefix=$BOOST_ROOT"
     ./b2 install
 
-Build with specific Boost version
+Build with specific Boost version:
+
     cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release .
     make
+
