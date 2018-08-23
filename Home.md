@@ -34,4 +34,4 @@ cmake -DBOOST_ROOT=~/boost160 .
 
 ### Witnesses
 * [[How to become an active witness in BitShares 2.0|How to become an active witness in BitShares 2.0]]
-* [[How to setup your witness for test net (Ubuntu 14.04)|How to setup your witness for test net (Ubuntu 14.04)]]
+* [[How to setup your witness for test net (Ubuntu 14.04 LTS 64 bit)|How to setup your witness for test net (Ubuntu 14.04 LTS 64 bit)]]
