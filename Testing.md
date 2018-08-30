@@ -45,4 +45,4 @@ The role of the witness node is to broadcast transactions, download blocks, and 
 Running specific tests
 ----------------------
 
-- `tests/chain_tests -t block_tests/name_of_test`
+- `tests/chain_test -t block_tests/name_of_test`
