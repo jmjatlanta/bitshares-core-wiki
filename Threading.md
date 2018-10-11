@@ -3,9 +3,12 @@ Threading in BitShares Core
 
 *Work in progress*
 
+General Remarks
+---------------
+
 BitShares uses `boost::thread` for parallel execution. However, due to the single-threaded internal database, threads are used sparingly.
 
-On top boost::thread, BitShares implements a kind of cooperative multitasking (`using boost::context`). I. e. a thread can have tasks queued for processing, and whenever a task either completes or is blocked in a mutex, the thread switches to the next task in the queue.
+On top of `boost::thread`, BitShares implements a kind of cooperative multitasking (using `boost::context`). I. e. a thread can have tasks queued for processing, and whenever a task either completes, is blocked in a mutex, or is waiting for a future, the thread switches to the next task in the queue (but see below).
 
 Per default there are two main threads, a database thread and a P2P thread. In addition, several more threads are started for asynchronous IO operations (using `boost::asio`). These are available through `fc::default_io_service()`.
 
@@ -29,3 +32,9 @@ Tasks
 An `fc::task` consists of two parts - a functor to be executed, and a promise that is fulfilled upon completion of the functor with its return value.
 
 An `fc::promise` is usually paired with an `fc::future`. The future owns the promise (in the sense of RAII) through a `shared_ptr`. This means that at least one future for a given task must exist until the task is completed, because otherwise the promise goes out of scope and the thread that's processing the task will have a problem.
+
+**Caveats**
+-----------
+
+# A thread that is blocked in an `fc::spin_yield_lock` will yield to other tasks in its ready queue, but will not start new tasks in the pending queue, nor check blocked tasks and the futures they're blocking on!
+# A thread that is blocked in an `fc::spin_lock` will (as the name implies) spin-wait for the lock to become free instead of yielding to anything else.
