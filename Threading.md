@@ -17,9 +17,45 @@ With https://github.com/bitshares/bitshares-core/pull/1360 there will be another
 P2P Thread
 ----------
 
-The P2P thread is "owned" by `node_impl`. It has several permanent tasks for handling (accepting, creating, monitoring, closing) P2P connections.
+The P2P thread is "owned" by `node_impl`. It has several permanent tasks for handling (accepting, creating, monitoring, closing) P2P connections, started from ``connect_to_p2p_network()``.
 
 P2P communication is based on messages. Messages start with a message header containing message type and payload size, followed by the payload and padded to a multiple of 16 bytes. Incoming messages concerning the P2P layer are handled within the P2P thread, messages concerning the database (mostly blocks and transactions) are handed over to the database thread. "handed over" means a task is created within the database thread.
+
+### accept_loop
+
+Accepts connections on the P2P listening socket (if any) and enters them into the ``_handshaking_connections`` pool.
+
+### p2p_network_connect_loop
+
+Attempts to connect to known peers as long as ``current_connections < desired_connections``.
+
+### fetch_sync_items_loop
+
+Continually requests items in ``ids_of_items_to_get`` from connected peers.
+
+### fetch_items_loop
+
+Continually requests items in ``_items_to_fetch`` from connected peers.
+
+### advertise_inventory_loop
+
+Advertises items in ``_new_inventory`` to connected in-sync peers.
+
+### terminate_inactive_connections_loop
+
+Terminates connections that appear idle, or stale, or dead.
+
+### fetch_updated_peer_lists_loop
+
+Periodically (hardcoded every 15 minutes) sends ``address_request_message`` to all active peers.
+
+### bandwidth_monitor_loop
+
+Updates total bytes sent/received every second for the past minute. Aggregates per minute over the last hour, keeps hourly aggregates for 72 hours.
+
+### dump_node_status_task
+
+Dumps node status to logfile (level INFO) every minute.
 
 Database thread
 ---------------
