@@ -60,7 +60,11 @@ Dumps node status to logfile (level INFO) every minute.
 Database thread
 ---------------
 
-The database thread is also the "main" thread of `witness_node`.
+The database thread is actually the "main" thread of `witness_node`.
+
+It initializes the database and the configured plugins, opens the database (which can involve replaying), then starts the P2P network thread and possibly websocket API endpoints. After starting everything else, it simply goes to sleep and waits for application shutdown.
+
+The database thread does not remain completely inactive though. It handles tasks posted to it from the other threads, for example from the P2P thread, from the websocket threads, or from plugins like the witness plugin.
 
 Tasks
 -----
