@@ -66,6 +66,8 @@ It initializes the database and the configured plugins, opens the database (whic
 
 The database thread does not remain completely inactive though. It handles tasks posted to it from the other threads, for example from the P2P thread, from the websocket threads, or from plugins like the witness plugin.
 
+Some of these tasks **must not** be interrupted. E. g. when during application of a block the task yields, another task may become active that interferes with the block processing, e. g. when a new pending transaction is received via P2P or client API and immediately applied to the database.
+
 Tasks
 -----
 
