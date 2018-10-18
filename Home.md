@@ -11,7 +11,7 @@ cmake -DBOOST_ROOT=~/boost160 .
 
 * [[Ubuntu (64-bit) Linux|BUILD_UBUNTU]]
 * [[OS X|Building-on-OS-X]]
-* [[Windows|BUILD_WIN32]] - [[WinDevEnv|WinDevEnv]] 
+* [[Windows|BUILD_WIN32]] / [[Windows Development Environment|BUILD_WinDevEnv]] 
 * [[Web and light wallets|Web-and-light-wallets-release-procedure]]
 
 ### Architecture
