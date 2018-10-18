@@ -32,18 +32,3 @@ Build with specific Boost version:
 
     cmake -DBOOST_ROOT="$BOOST_ROOT" -DCMAKE_BUILD_TYPE=Release .
     make
-
-## Error `{"message":"Timer Expired"}` in Ubuntu 16.04 LTS (64-bit) 
- 
-If error `{"message":"Timer Expired"}` dropped then it could be issue with websocketpp in linux kernel > 4.4.
-
-Details [here](https://github.com/DECENTfoundation/DECENT-Network/issues/194).
- 
-Steps to fix:
-
-    cd ~/bitshares-core/libraries/fc/vendor/websocketpp
-    git remote set-url origin https://github.com/DECENTfoundation/websocketpp.git
-    git fetch
-    git checkout 
-
-And then build BitShares Core.
