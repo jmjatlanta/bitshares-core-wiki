@@ -80,3 +80,4 @@ An `fc::promise` is usually paired with an `fc::future`. The future owns the pro
 
 * A thread that is blocked in an `fc::spin_yield_lock` will yield to other tasks in its ready queue, but will not start new tasks in the pending queue, nor check blocked tasks and the futures they're blocking on!
 * A thread that is blocked in an `fc::spin_lock` will (as the name implies) spin-wait for the lock to become free instead of yielding to anything else.
+* `promise.wait(timeout)` will set the promise into error state if the timer expires.
