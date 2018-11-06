@@ -74,8 +74,14 @@ For a release,
 10. The "release" branch is merged into "testnet". This will produce a merge
     conflict for the hardfork dates, which must be resolved without changing the
     testnet hardfork date.
-11. Update `Doxyfile` with the last version tag. Update online code documentation by using updated `Doxyfile` as config file in the `master` branch. Send pull request to https://github.com/bitshares/bitshares.github.io with new content in html format.
-12. Update [download page of bitshares.org site](https://github.com/bitshares/bitshares.github.io/blob/master/_includes/download.html).
+11. Update `Doxyfile` with the last version tag. Update online code documentation by using updated `Doxyfile` as config file in the `master` branch. Send pull request to https://github.com/bitshares/bitshares.github.io with new content in html format. Send pull to https://github.com/bitshares/dev.bitshares.works with new content in xml format.
+12. Update date of last core [download page of bitshares.org site](https://github.com/bitshares/bitshares.github.io/blob/master/_includes/download.html).
+13. Create binaries for linux, macos and windows. Once the tag name is known create binaries for this 3 OS. Attach them to release notes. 
+Example: https://github.com/bitshares/bitshares-core/releases/tag/2.0.181105
+Binaries names for this release: 
+- Linux: BitShares-core-2.0.181105-Linux-cli-tools.tar.gz
+- Windows: BitShares-Core-2.0.181105-Windows-x64-cli-tools.zip
+- macOS: BitShares-Core-2.0.181105-macOS-cli-tools.tar.gz
 
 **Note:** Solving conflicts by github(web) will merge branches in unintended directions. Avoid solving this way, merge and resolve conflicts manually through the git command line. Conflicts generally occur when merging release to testnet.
 
