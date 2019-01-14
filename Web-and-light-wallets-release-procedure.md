@@ -1,3 +1,5 @@
+(outdated, should rewrite and move it to https://github.com/bitshares/bitshares-ui)
+
 ## Release Notes
 - Checkout and test [graphene-ui master](https://github.com/cryptonomex/graphene-ui)
 - Add release notes to `graphene-ui/release-notes.txt`
