@@ -5,12 +5,15 @@ Setting up private testnet
 Genesis creation
 ----------------
 
-First, we'll create a `genesis.json` file named `my-genesis.json`:
+First, create a subdirectory named `genesis` and create a file within it
+named `my-genesis.json`. This file dictates the initial state of the network.
 
-    mkdir -p genesis
-    programs/witness_node/witness_node --create-genesis-json genesis/my-genesis.json
+You can use the existing public testnet `genesis.json` file as an example.
+That file can be found at 
+https://github.com/bitshares/bitshares-core/blob/testnet/genesis.json
 
-The `genesis.json` is the initial state of the network.
+The rest of these instructions assume you create your `my-genesis.json` 
+file in a subdirectory named `genesis`.
 
 Genesis editing
 ---------------
