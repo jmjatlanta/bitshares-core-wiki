@@ -63,7 +63,7 @@ and HTTP (80):
 
         # in case some other domain points to us, let's still redirect
         # to node backend
-        default_backend is_node
+        default_backend node
 
      frontend http
         bind *:80
