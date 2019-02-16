@@ -115,3 +115,12 @@ taken:
 5. The "release" branch is merged into "develop", and it is verified that the
    fix resolves the problem, by running the unit test.
 6. The "release" branch is merged into "hardfork" and "testnet".
+
+## How To Update the README.md
+
+In general we want changes in the README to be visible fast in `master`.
+
+1. Update the README.md of the `release` candidate.
+2. Merge `release` to `master`.
+3. Merge back `release` to `develop`.
+4. Merge `develop` into `hardfork` and `testnet` if changes need to be visible in all the branches or wait until this merges occur naturally.
