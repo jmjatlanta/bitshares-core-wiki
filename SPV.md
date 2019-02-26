@@ -60,3 +60,7 @@ Hence, for a proof that a transaction `tx` is part of a block `B(tx)`, we need t
 
 * How to allow a block producer to change signing key?
 * Can we make irreversible explicit if the block producer commit to the first-block-in-round of the **previous round**?
+
+
+# Literature
+1. [kyber.network](https://blog.kyber.network/waterloo-a-decentralized-practical-bridge-between-eos-and-ethereum-1c230ac65524)
