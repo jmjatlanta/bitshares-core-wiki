@@ -15,7 +15,7 @@ __working with the Core Team to implement the required graphical interface prior
 ## Introduction
 
 An HTLC is a __conditional transfer__ of value from "depositor" to "recipient" where two distinct
-encumbrances prevent immediate execution. 1) The __hashlock__ requires presenting the proper "preimage"
+conditions prevent immediate execution. 1) The __hashlock__ requires presenting the proper "preimage"
 to the blockchain prior to the 2) __timelock__ expiration, else the value automatically returns to
 "depositor".
 
@@ -47,6 +47,9 @@ ready to reveal it him.
 2. Using this [external website](https://passwordsgenerator.net/sha256-hash-generator/) generate a
 "preimage"
 3. Enter your "preimage" text into the textbox
+```
+Warning: Using a popular preimage is large security risk. The recipient can redeem the HTLC by comparing the preimage_hash to a dictionary of popular hashes. The best preimage is a long, random one.
+```
 4. Count how many characters your entered, including spaces, this is your "preimage_length" in bytes
 5. Retain your "preimage" and "preimage_length" for later use
 6. Example: "preimage" is `My Preimage` and "preimage_length" is `11` bytes
@@ -71,42 +74,51 @@ ready to reveal it him.
   upon broadcast to the blockchain (e.g. `300` for 5 minutes)
  - i. <broadcast> is a boolean value which must be set to `true` to be sent by the `cli_wallet` software
 2. `alice` will execute this command: $(unlocked)>`htlc_create alice bob 100 TEST SHA256 "650BFCEF53BD8E6E030613E0B75EC0CBA4FCD25C53BF0D15A6283593B269DF79" 11 300 true`
-3. The HTLC is now active and the __hashlock__ expiration is counting down the seconds for bob to verify
+3. The JSON response will be returned (else an assert error - check your parameters)
+4. The HTLC is now active and the __hashlock__ expiration is counting down the seconds for `bob` to verify
 and redeem.
-4. The 100 TEST tokens are deducted from the account balance of `alice` and are locked into the HTLC, 
-protected by both the __hashlock__ and __timelock__ encumbrances.
+5. The 100 TEST tokens are deducted from the account balance of `alice` and are locked into the HTLC, 
+protected by both the __hashlock__ and __timelock__ conditions.
 
 ## 4. Verify the HTLC (recipient)
 
 1. `bob` must validate the HTLC created by `alice` meets his requirements. He can do this by looking 
-at the recent __account history operations__ for her account to find the active HTLC.
-2. `bob` will execute this command: $(unlocked)>`get_account_history alice 1`
- - a. This will return the most recent operation, which should begin with "HTLC Create to bob" 
- - b. Locate the HTLC "database_id" having the format `1.18.XX` 
+at the recent __account history operations__ for his account to find the active HTLC.
+2. `bob` will execute this command: $(unlocked)>`get_account_history bob 1`
+ - a. This will return the most recent operation, which should begin with "Create HTLC to bob" 
+ - b. Locate the HTLC "database_id" having the format `1.16.XX` 
    - i. "XX" will also be a numeric value unique to the HTLC `alice` created
-   - ii. Retain the complete HTLC "database_id" (e.g `1.18.99`)
-3. `bob` will use the "database_id" to execute this command: $(unlocked)>`get_htlc 1.18.99`
-4. `bob` will verify the following values meet his expectations, as agreed to previously with `alice`:
+   - ii. Retain the complete HTLC "database_id" (e.g `1.16.99`)
+3. `bob` will use the "database_id" to execute this command: $(unlocked)>`get_htlc 1.16.99`
+4. `bob` will verify the following transfer values meet his expectations, as agreed to previously with `alice`:
  - a. from
  - b. to
  - c. amount
- - d. symbol
- - e. expiration
-5. `bob` will now learn about the __hashlock__ `alice` applied in these fields:
- - a. hash_algo
- - b. preimage_hash
- - c. preimage_length
+ - d. asset
+5. `bob` will now learn about the two conditions `alice` applied to the HTLC. 
+
+ - Within the __hashlock__ he observes:
+
+   - a. hash_algo
+   - b. preimage_hash
+   - c. preimage_length
+
+ - Within the __timelock__ he observes:
+
+   - d. expiration_string
+
 6. If `bob` validates everything, he may proceed to Redeem the HTLC
 7. Else, `alice` will automatically receive the value locked in the HTLC when the __timelock__ expires 
 
 ## 5. Redeem the HTLC (recipient)
 
 1. `bob` will obtain the `preimage` from `alice`, likely after performing the agreed upon task
-2. The `htlc_redeem` command has the following syntax: `htlc_redeem <htlc_database_id> <preimage> <fee_paying_account> <broadcast>`
-3. `bob` will execute the following command: $(unlocked)>`htlc_redeem 1.18.99 "My Preimage" bob true`
-4. The "preimage" `bob` supplied satisfies the __hashlock__ encumbrance on the HTLC and the `100 TEST`
-are moved into his account balance (less 1 TEST which is paid as the transaction fee).
-5. anyone may issue this command to verify: $>`list_account_balances bob`
+2. The `htlc_redeem` command has the following syntax: `htlc_redeem <htlc_database_id> <fee_paying_account> <preimage> <broadcast>`
+3. `bob` will execute the following command: $(unlocked)>`htlc_redeem 1.16.99 bob "My Preimage" true`
+4. The JSON response will be returned (else an assert error - check your parameters)
+5. The "preimage" `bob` supplied satisfies the __hashlock__ condition on the HTLC and the `100 TEST`
+are moved into his account balance (less 0.4 TEST which is paid as the transaction fee, less 0.8 TEST which is paid as the kilobyte fee for storing the "preimage").
+6. Anyone may issue this command to verify: $>`list_account_balances bob`
 
 Using Two HTLCs to Perform an Atomic Swap
 =========================================
