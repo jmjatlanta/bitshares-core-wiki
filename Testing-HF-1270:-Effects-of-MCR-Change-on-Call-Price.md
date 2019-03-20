@@ -1,5 +1,6 @@
 # Overview
 
+
 The instructions below are intended to assist with manual testing of changes made to address the issue of [inconsistent call price when MCR is changed](https://github.com/bitshares/bitshares-core/issues/1270) in the [BitShares 201904 Consensus-Upgrade Release](https://github.com/bitshares/bitshares-core/milestone/16?closed=1).
 
 These test instructions should be executed from a command line interface wallet (CLI) that has been **built for your test environment**.  For example, testing performed with the public testnet requires the CLI built for the [BitShares Public Testnet](https://testnet.bitshares.eu).  The following instructions were executed on a private testing environment where BTS was the core token.  These exact instructions may differ on your test environment in the following ways:
@@ -40,15 +41,15 @@ Create the account of a publisher called "publisher-a"
 	unlocked >>> suggest_brain_key
 	suggest_brain_key 
 	{
-  	"brain_priv_key": "SIGNUM ARLES RESEEK SOMATIC BESTRAW CRAISEY AGGROUP PALLED CHKALIK LANGUID CROOL PULLET HAUSEN COMMUNE ONDY SWEAR",
-	  "wif_priv_key": "5J4XNAAGmJuU5i4JPa7KCVbWNny4X74dUnyXFMEdUZaZS78WjLg",
+  	"brain_priv_key": "...",
+	  "wif_priv_key": "...,
 	  "pub_key": "BTS5RP4bVx2utcnoq1J9eSDFFZu3izmMqvZtGors4ctL1ar9Hy8q9"
 	}
 	unlocked >>> suggest_brain_key 
 	suggest_brain_key 
 	{
-	  "brain_priv_key": "TASH CROSA GLAIVE OUTRUN PARCEL BONUS MARID TANAIST EGAD MUNGOFA HEALTH VARIANT SEWLESS SIRKEER YEARTH BOOKED",
-	  "wif_priv_key": "5JLYANWwWC81rA9Q64PxxK3AcyWvsGY7XY8RmbYBFQiARxj6439",
+	  "brain_priv_key": "...",
+	  "wif_priv_key": "...",
 	  "pub_key": "BTS7HbpzSg89bKkuWhyCpd3V57QBTtRRWupLgVgDGwisikd9W4XD2"
 	}
 
@@ -437,15 +438,15 @@ Give some accounts enough collateral asset to borrow the asset into existence, a
 	unlocked >>> suggest_brain_key 
 	suggest_brain_key 
 	{
-	  "brain_priv_key": "UNDIGHT STRING NONENE BEADROW VANADYL ISIDIUM SUMPLE BIOLITH JACKET LINGUAL STRIDE BRAVE ESPIAL ARCANAL UNGILL TOXONE",
-	  "wif_priv_key": "5KW6uR3EKo4XsRKTjVk6ahAZHBwDo12wR9JQgUfG9rEHWYpBWUT",
+	  "brain_priv_key": "...",
+	  "wif_priv_key": "...",
 	  "pub_key": "BTS7B52d2ToTbG7hLqtCXznCrHfB1uHj1tfi3RnPX39MXDVcQvaxY"
 	}
 	unlocked >>> suggest_brain_key 
 	suggest_brain_key 
 	{
-	  "brain_priv_key": "STEND PASHA SEEL COWPOX FUNGIAN GROUGH ALNUIN ARGHAN NOMIAL SEMIRAW UNLIME INDRAFT BYWORD GERATIC RIMULA REMARK",
-	  "wif_priv_key": "5K6SdDpJLhN49NEKu4mppofu8VWizUFbwVqsfoCiUZrnNgPbufx",
+	  "brain_priv_key": "...",
+	  "wif_priv_key": "...",
 	  "pub_key": "BTS7ubVaqr9sCcEn7RRE714UriqMXWxouu5AteEcYzgBg2XDJrWL1"
 	}
 
@@ -470,16 +471,16 @@ Transfer core tokens to trader-a
 	unlocked >>> suggest_brain_key 
 	suggest_brain_key 
 	{
-	  "brain_priv_key": "BONAGH PELORIA KAMAS ARCHAE CONQUER CAPTOR ROOFMAN TERMINI UNBOX BOXWOOD MORGAY STOOP PRAWNY RAMOUS POCHAY RUINER",
-	  "wif_priv_key": "5KbBAVxYG5KzXHroP1rPju2TChnE18Wk2FGkbidjmFqF4V4YDHF",
+	  "brain_priv_key": "...",
+	  "wif_priv_key": "...",
 	  "pub_key": "BTS6fBqA4pGBXoorHQMcikspLwuZDRMdoXuZeUgsuRx6Ui6Rd3oVw"
 	}
 
 	unlocked >>> suggest_brain_key 
 	suggest_brain_key 
 	{
-	  "brain_priv_key": "GULPY POHA PINKISH NEONATE SKEERY QUIZ QUILLET SEAMARK MUTANT HONILY SERIAL STIFE DOUBLER BLACKIE CHOOSE CEROTE",
-	  "wif_priv_key": "5JjNz8NPNBa5pKZbsdiZpxanb2RJdhWmjcZJD443Myc6pZPVGvu",
+	  "brain_priv_key": "...",
+	  "wif_priv_key": "...",
 	  "pub_key": "BTS5ez6PFW7gSnZmX2x18cX5swKL4S2TH3zPH51HUKXhVbNVD9UCk"
 	}
 
