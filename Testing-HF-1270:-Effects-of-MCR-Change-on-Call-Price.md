@@ -23,7 +23,7 @@ For reference, the following unit tests that have been prepared to test the fixe
 
 # Initialize the Test Environment
 
-The following test scenarios portray the interaction of five actors: an account registrart issuer ("nathan"), an asset issuer ("nathan"), a feed publisher ("publisher-a"), and two asset borrowers/traders ("trader-a" and "trader-b").  Each will require their own wallet with their own keys.  Certain steps must be performed by specific actors from their respective wallet.  Each step of the instructions describe which actor is performing that step.  The reader should use the respective actor's wallet.
+The following test scenarios portray the interaction of five actors: an account registrar issuer ("nathan"), an asset issuer ("nathan"), a feed publisher ("publisher-a"), and two asset borrowers/traders ("trader-a" and "trader-b").  Each will require their own wallet with their own keys.  Certain steps must be performed by specific actors from their respective wallet.  Each step of the instructions describe which actor is performing that step.  The reader should use the respective actor's wallet.
 
 |Tip|
 |-|
@@ -593,11 +593,13 @@ The feed producer changes the MCR to 2.0 while not changing the price feed
 
 	publish_asset_feed publisher-a TESTUSDA {"settlement_price":{"base":{"amount":10000,"asset_id":"1.3.1"},"quote":{"amount":2000000,"asset_id":"1.3.0"}},"maintenance_collateral_ratio":2000,"maximum_short_squeeze_ratio":1100,"core_exchange_rate":{"base":{"amount":10000,"asset_id":"1.3.1"},"quote":{"amount":1900000,"asset_id":"1.3.0"}}} true
 
-No obvious changes will be visible by inspecting the order book with `get_order_book`
+No changes will be visible by inspecting the order book with `get_order_book`
 
-**Before HF1270**, no changes to the debt nor collateral of loans will be apparent by inspecting the loans with `get_call_orders`
+**Before HF1270**, no changes to the debt nor collateral of loans will be apparent by inspecting the loans with `get_call_orders`.
 
-**After post-HF1270**, the call price of the loans provided in the output of `get_call_orders` should change to reflect the increased MCR.
+**After post-HF1270**, no changes to the debt nor collateral of loans will be apparent by inspecting the loans with `get_call_orders`.  The `call_price` field of every loan will always appear with an effective price of 1.0 after the hardfork.  The call_price of the bitasset is now left as a calculation to client software to calculate.  The call price of the bitasset denominated in the collateral token (e.g. bitCNY/BTS) should be calculated as
+
+call_price = (collateral &times; MCR) &div; debt
 
 
 ## 4. Feed Publisher: Reset the MCR to 1.75
