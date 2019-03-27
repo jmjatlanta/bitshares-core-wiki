@@ -69,7 +69,7 @@ For a release,
 7. After approval, the mainnet hardfork date is decided and set in the "release"
    branch.
 8. The "release" branch is merged into "master", and a *version* tag is created
-   on "master". Create tag by git command line and then point the release to the created tag. This is needed for Docker to catch the new code.
+   on "master". Create tag by git command line and then point the release to the created tag in github. This is needed for Docker to catch the new code.
 9. The "release" branch is merged back into "develop" and "hardfork".
 10. The "release" branch is merged into "testnet". This will produce a merge
     conflict for the hardfork dates, which must be resolved without changing the
