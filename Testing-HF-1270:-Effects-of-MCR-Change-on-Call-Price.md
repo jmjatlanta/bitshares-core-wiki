@@ -1,7 +1,7 @@
 # Overview
 
 
-The instructions below are intended to assist with manual testing of changes made to address the issue of [inconsistent call price when MCR is changed](https://github.com/bitshares/bitshares-core/issues/1270) in the [BitShares 201904 Consensus-Upgrade Release](https://github.com/bitshares/bitshares-core/milestone/16?closed=1).
+The instructions below are intended to assist with manual testing of changes made to address the issue of [inconsistent call price when MCR is changed](https://github.com/bitshares/bitshares-core/issues/1270) in [BitShares Core v.3.0.0](https://github.com/bitshares/bitshares-core/milestone/16?closed=1).
 
 These test instructions should be executed from a command line interface wallet (CLI) that has been **built for your test environment**.  For example, testing performed with the public testnet requires the CLI built for the [BitShares Public Testnet](https://testnet.bitshares.eu).  The following instructions were executed on a private testing environment where BTS was the core token.  These exact instructions may differ on your test environment in the following ways:
 
