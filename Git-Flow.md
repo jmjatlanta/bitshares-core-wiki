@@ -74,7 +74,7 @@ For a release,
 10. The "release" branch is merged into "testnet". This will produce a merge
     conflict for the hardfork dates, which must be resolved without changing the
     testnet hardfork date.
-11. Update `Doxyfile` with the last version tag. Update online code documentation by using updated `Doxyfile` as config file in the `master` branch. Send pull request to https://github.com/bitshares/bitshares.github.io with new content in html format. Send pull to https://github.com/bitshares/dev.bitshares.works with new content in xml format.
+11. Update `Doxyfile` with the last version tag. Update online code documentation by using updated `Doxyfile` as config file in the `master` branch. Send pull request to https://github.com/bitshares/bitshares.org with new content in html format. Send pull to https://github.com/bitshares/dev.bitshares.works with new content in xml format.
 12. Update date of last core [download page of bitshares.org site](https://github.com/bitshares/bitshares.org/blob/master/download.php).
 13. Create binaries for linux, macos and windows. Once the tag name is known create binaries for this 3 OS. Attach them to release notes. 
 Example: https://github.com/bitshares/bitshares-core/releases/tag/3.0.0
