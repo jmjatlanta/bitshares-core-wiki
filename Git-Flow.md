@@ -77,11 +77,11 @@ For a release,
 11. Update `Doxyfile` with the last version tag. Update online code documentation by using updated `Doxyfile` as config file in the `master` branch. Send pull request to https://github.com/bitshares/bitshares.github.io with new content in html format. Send pull to https://github.com/bitshares/dev.bitshares.works with new content in xml format.
 12. Update date of last core [download page of bitshares.org site](https://github.com/bitshares/bitshares.org/blob/master/download.php).
 13. Create binaries for linux, macos and windows. Once the tag name is known create binaries for this 3 OS. Attach them to release notes. 
-Example: https://github.com/bitshares/bitshares-core/releases/tag/2.0.181105
+Example: https://github.com/bitshares/bitshares-core/releases/tag/3.0.0
 Binaries names for this release: 
-- Linux: BitShares-core-2.0.181105-Linux-cli-tools.tar.gz
-- Windows: BitShares-Core-2.0.181105-Windows-x64-cli-tools.zip
-- macOS: BitShares-Core-2.0.181105-macOS-cli-tools.tar.gz
+- Linux: BitShares-core-3.0.0-Linux-cli-tools.tar.gz
+- Windows: BitShares-Core-3.0.0-Windows-x64-cli-tools.zip
+- macOS: BitShares-Core-3.0.0-macOS-cli-tools.tar.gz
 
 **Note:** Solving conflicts by github(web) will merge branches in unintended directions. Avoid solving this way, merge and resolve conflicts manually through the git command line. Conflicts generally occur when merging release to testnet.
 
@@ -89,7 +89,7 @@ Binaries names for this release:
 
 **Note 3:** When creating tag for testnet do it from the command line with `git tag`. Github don't have the option to create a tag without a release.
 
-**Note 4:** <strike>the tag commit can be changed</strike>. Don't change tags on github. This is a source of confusion, and of irreproducible bug reports. Make new one is better (ex: test-2.0.180321b or wait 1 day).
+**Note 4:** <strike>the tag commit can be changed</strike>. Don't change tags on github. This is a source of confusion, and of irreproducible bug reports. Make new one is better (ex: test-3.0.1).
 
 **Note 5:** Do not mark releases as "pre release" unless there is a real new version coming immediately after. Never upgrade "pre release" to "release" as new emails to subscribers will not be sent when doing so.
 
