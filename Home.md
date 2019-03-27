@@ -3,7 +3,7 @@ New and updated developer information can be found at [Bitshares Developer Porta
 ### Building
 **BitShares requires a 64-bit operating system to build**
 
-**BitShares requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.65.1].** Versions earlier than 1.57 or newer than 1.65.1 are NOT supported. If your system Boost version is newer, then you will need to manually build an older version of Boost and specify it to CMake using `-DBOOST_ROOT`:
+**BitShares requires a [Boost](http://www.boost.org/) version in the range [1.57, 1.69].** Versions earlier than 1.57 or newer than 1.69 are NOT supported. If your system Boost version is newer, then you will need to manually build an older version of Boost and specify it to CMake using `-DBOOST_ROOT`:
 
 ```
 cmake -DBOOST_ROOT=~/boost160 .
@@ -18,6 +18,7 @@ cmake -DBOOST_ROOT=~/boost160 .
 * [[Blockchain Objects|Blockchain Objects]]
 * [[Wallet / Full Nodes / Witness Nodes|Wallet_Full Nodes_Witness_Nodes]]
 * [[Stealth Transfers|StealthTransfers]]
+* [[Hash Time Locked Contracts (HTLC)|HTLC]]
 
 ### Wallet
 * [[CLI Wallet Cookbook|CLI-Wallet-Cookbook]]
