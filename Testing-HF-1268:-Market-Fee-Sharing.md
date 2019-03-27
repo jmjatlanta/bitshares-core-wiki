@@ -1,7 +1,7 @@
 # Preface
 
 
-The instructions below are intended to assist with manual testing of changes made to [share market fees between an asset owner and a trader's registrar and referrer](https://github.com/bitshares/bsips/blob/master/bsip-0043.md) in the [BitShares 201904 Consensus-Upgrade Release](https://github.com/bitshares/bitshares-core/milestone/16?closed=1).
+The instructions below are intended to assist with manual testing of changes made to [share market fees between an asset owner and a trader's registrar and referrer](https://github.com/bitshares/bsips/blob/master/bsip-0043.md) in [BitShares Core v.3.0.0](https://github.com/bitshares/bitshares-core/milestone/16?closed=1).
 
 These test instructions should be executed from a command line interface wallet (CLI) that has been **built for your test environment**.  For example, testing performed with the public testnet requires the CLI built for the [BitShares Public Testnet](https://testnet.bitshares.eu).  The following instructions were executed on a private testing environment where TEST was the core token.  These exact instructions may differ on your test environment in the following ways:
 
@@ -351,7 +351,7 @@ get_vesting_balances <ACCOUNT_NAME>
 There might be many vesting balances listed.  Find the vesting balance of type `market_fee_sharing` with `asset_id` that matches the `id` of ASSET.   Note the `id` of the vesting balance (e.g. "1.13.z") to use in the next step.
 
 
-Withdraw the vesting balance with the vesting_balance_withdraw_operation which has operation identifier of 33.  This will require building a transaction in the CLI Wallet.
+Withdraw the vesting balance with the `vesting_balance_withdraw_operation` which has an [operation identifier of 33](https://github.com/bitshares/bitshares-core/blob/8c1a78b7f3f0083abee695c1b8a9b944f2c4a1be/libraries/chain/include/graphene/chain/protocol/operations.hpp#L84).  This will require building a transaction in the CLI Wallet.
 
 ```
 begin_builder_transaction
@@ -392,7 +392,7 @@ The identifier of the asset can be found by inspecting the `id` in the output of
 get_asset <ACCOUNT_NAME>
 ```
 
-Withdraw the vesting balance with the asset_claim_fees_operation which has an operation identifier of 43.  This will require building a transaction in the CLI Wallet.
+Withdraw the vesting balance with the `asset_claim_fees_operation` which has an [operation identifier of 43](https://github.com/bitshares/bitshares-core/blob/8c1a78b7f3f0083abee695c1b8a9b944f2c4a1be/libraries/chain/include/graphene/chain/protocol/operations.hpp#L94).  This will require building a transaction in the CLI Wallet.
 
 ```
 begin_builder_transaction
