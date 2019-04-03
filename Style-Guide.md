@@ -13,7 +13,8 @@ This Cording Style Guide are specific to BitShares-Core codebase. It will save t
 ----
 
 ### General 
-- Prefer FC_ASSERT instead of assert
+- Use `FC_ASSERT` instead of `assert` (reason: `assert()` checks are executed conditionally depending on compile-time settings, which endangers consensus)
+- Use `using` instead of `typedef`
 
 ### Formatting
 - Maximum line length: 118 (*That's what you can see on github without side-scrolling)
@@ -29,6 +30,8 @@ This Cording Style Guide are specific to BitShares-Core codebase. It will save t
     - [Comment](https://github.com/bitshares/bitshares-core/issues/1318#issuecomment-472376797)
   - [4 spaces of indentation](https://github.com/bitshares/bitshares-core/issues/1318#issuecomment-468077506), and do away with padding the insides of parentheses.
     - [Comment](https://github.com/bitshares/bitshares-core/issues/1318#issuecomment-472125824)
+  - for function and method calls, there is *no* space between function name and opening parenthesis
+  - for control statements there *is* a space between statement and opening parenthesis
 
 **Suggestions**
 - We should
@@ -52,25 +55,17 @@ This Cording Style Guide are specific to BitShares-Core codebase. It will save t
 
 
 ### Scoping
-- In lambda, prefer capture variables explicitly if what you need is not too many.
+- lambda expressions must capture variables explicitly if what you need is not too many.
 - In a huge refactoring please do it in small steps in individual commits that are easily verifiable. This makes the reviewer life a bit easier. - [From: #1413 (comment)](https://github.com/bitshares/bitshares-core/pull/1413#issuecomment-437932230)
 - Avoid global variables. From [#1324 (comment)](https://github.com/bitshares/bitshares-core/pull/1324#issuecomment-439715251)
-
-
-
-
 
 ### Classes
 - 
 - 
 
-
-
 ### Functions
 - When defining a function:  `{` should always be in a new line.
 - 
-
-
 
 ### Exception Rules 
 - 
@@ -89,9 +84,4 @@ This Cording Style Guide are specific to BitShares-Core codebase. It will save t
 - Pull requests in bitshares can only be made against 2 branches: `develop` if there is a non consensus related change or `hardfork` if it is modifying consensus.
 
 
-
-
 *************
-
-
-
