@@ -58,7 +58,7 @@ For a release,
    doesn't harm if check again.
    3. Bump docs sub-module which links to wiki.
 1. A "release" branch is created based on "develop" or "hardfork".
-2. Update Doxyfile with the last version tag.
+2. Update Doxyfile with the last version tag in "release" branch.
 3. The "release" branch is merged into "testnet".
 4. For a hardfork release, the hardfork date is adapted directly on the
    testnet branch.
