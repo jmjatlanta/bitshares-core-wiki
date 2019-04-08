@@ -58,25 +58,26 @@ For a release,
    doesn't harm if check again.
    3. Bump docs sub-module which links to wiki.
 1. A "release" branch is created based on "develop" or "hardfork".
-2. The "release" branch is merged into "testnet".
-3. For a hardfork release, the hardfork date is adapted directly on the
+2. Update Doxyfile with the last version tag.
+3. The "release" branch is merged into "testnet".
+4. For a hardfork release, the hardfork date is adapted directly on the
    testnet branch.
-4. The "testnet" branch is tagged as test-<i>version</i>.
-5. Bugfixes for the release are created on the "release" branch and merged into
+5. The "testnet" branch is tagged as test-<i>version</i>.
+6. Bugfixes for the release are created on the "release" branch and merged into
    "testnet". Additional test-<i>version</i>s are tagged as needed.
-6. After sufficient testing, the release must be approved. In the case of a
+7. After sufficient testing, the release must be approved. In the case of a
    hardfork release, witness approval is required.
-7. After approval, the mainnet hardfork date is decided and set in the "release"
+8. After approval, the mainnet hardfork date is decided and set in the "release"
    branch.
-8. The "release" branch is merged into "master", and a *version* tag is created
+9. The "release" branch is merged into "master", and a *version* tag is created
    on "master". Create tag by git command line and then point the release to the created tag in github. This is needed for Docker to catch the new code.
-9. The "release" branch is merged back into "develop" and "hardfork".
-10. The "release" branch is merged into "testnet". This will produce a merge
+10. The "release" branch is merged back into "develop" and "hardfork".
+11. The "release" branch is merged into "testnet". This will produce a merge
     conflict for the hardfork dates, which must be resolved without changing the
     testnet hardfork date.
-11. Update `Doxyfile` with the last version tag. Update online code documentation by using updated `Doxyfile` as config file in the `master` branch. Send pull request to https://github.com/bitshares/doxygen.bitshares.org with new content in html format. Send pull to https://github.com/bitshares/dev.bitshares.works with new content in xml format.
-12. Update date of last core [download page of bitshares.org site](https://github.com/bitshares/bitshares.org/blob/master/download.php).
-13. Create binaries for linux, macos and windows. Once the tag name is known create binaries for this 3 OS. Attach them to release notes. 
+12. Update online code documentation by using updated `Doxyfile` as config file in the `master` branch. Send pull request to https://github.com/bitshares/doxygen.bitshares.org with new content in html format. Send pull to https://github.com/bitshares/dev.bitshares.works with new content in xml format.
+13. Update date of last core [download page of bitshares.org site](https://github.com/bitshares/bitshares.org/blob/master/download.php).
+14. Create binaries for linux, macos and windows. Once the tag name is known create binaries for this 3 OS. Attach them to release notes. 
 Example: https://github.com/bitshares/bitshares-core/releases/tag/3.0.0
 Binaries names for this release: 
 - Linux: BitShares-core-3.0.0-Linux-cli-tools.tar.gz
