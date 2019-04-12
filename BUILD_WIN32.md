@@ -2,7 +2,7 @@ Windows development environment setup and build instructions
 ============================
 This document will help you build Bitshares Core from its source code, assuming only that you have a fresh installation of Windows.
 
-Note that compiling BitShares Core is not required to use the software. Binaries are available [here](https://github.com/bitshares/bitshares-core/releases).
+Note that compiling BitShares Core is not required to use the software. Pre-built binaries are available [here](https://github.com/bitshares/bitshares-core/releases).
 
 #### Prerequisites ####
 * 64 bit windows operating system. Windows 10 was used for this document.
