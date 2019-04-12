@@ -1,157 +1,84 @@
-Windows - Visual Studio 2013
+Windows development environment setup and build instruction
 ============================
+This document will help you build Bitshares Core from a fresh installation of Windows. Note that there are easier ways to install Bitshares Core. But this will provide you with details that will aid in understanding the different components.
+
 #### Prerequisites ####
-* Microsoft Visual C++ 2013 Update 1 (the free Express edition will work)
-* If you have multiple MSVS installation use MSVS Developer console from target version.
-* This build is for 64bit binaries.
+* 64 bit windows operating system. Windows 10 was used for this document.
 
-#### Set up the directory structure ####
-* Create a base directory for all projects.  I'm putting everything in
-  `D:\bitshares`, you can use whatever you like.  In several of the batch files
-  and makefiles, this directory will be referred to as `GRA_ROOT`:
+## Visual Studio ##
+Currently, only Microsoft Visual Studio 2015 Update 1 or older can be used to compile BitShares-core. Visual Studio 2015 Update 2 or newer will not work. This is being actively worked on, and should be resolved soon. Until then, you may install Microsoft Visual Studio 2015 Update 1 by following the directions [here](Visual_Studio_2015.md).
+
+## Git ##
+Download Git for Windows [here](https://git-scm.com/download/win).
+
+Installation of git is straightforward. Using the installation options that adds to your PATH environment variable is recommended.
+
+## CMake ##
+Download the latest cmake and install it. Version 3.14.1 was the latest version when this document was prepared. Find it available for download [here](https://cmake.org/download).
+
+Install it, and allow it to add to your PATH environment variable.
+
+## Perl ##
+Perl is used to build OpenSSL. ActiveState Perl is the recommended Perl engine. Version 5.26.3 was used for prepare this document. ActivePerl can be found [here](https://www.activestate.com/ActivePerl).
+
+Install it. As usual, adding this to the PATH will make your life easier. 
+
+## NASM ##
+NASM is also used to build some pieces of OpenSSL. A direct link to the version used to prepare this document is [here](https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win64/nasm-2.14.02-installer-x64.exe).
+
+The installer seems to not add to the PATH environment variable. You should do this manually.
+
+## OpenSSL ##
+OpenSSL, Boost, and libcurl are libraries compiled into the eventual BitShares-Core application. The instructions from here on can be modified to fit your situation. The `VS2015 x64 Native Tools command prompt` was used as `Administrator` to run these commands.
+
+Advice: To make life easier, you may wish to make a folder called "Development", where your compilation work can be kept. Within "Development", make a folder called "cpp" where you do everything c++ related. From there, you can type:
+
+``git clone https://github.com/openssl/openssl``
+
+This will pull the latest source code for OpenSSL to your machine. Since I do not care to put experimental versions of libraries into BitShares, I then get a more stable version and compile by typing the following commands:
 
 ```
-mkdir D:\bitshares
+cd openssl
+git checkout tags/OpenSSL_1_1_1b
+perl ./Configure VC-WIN64A no-shared
 ```
 
-* Clone the BitShares Core repository
-
+This may give an error about not having nmake.exe or dmake.exe in your PATH. If so, do not worry. If you can run nmake from this directory, you will be fine. Now type the following commands
 ```
-D:
-cd D:\bitshares
-git clone https://github.com/bitshares/bitshares-core.git
+nmake
+nmake install
+```
+By default, this will put OpenSSL in your C:\Program Files\OpenSSL directory.
+
+## Boost ##
+Return to your C:\Development\cpp directory ("cd .." should get you there), then clone and compile the boost library by typing the following commands:
+```
+git clone https://github.com/boostorg/boost
+cd boost
+git checkout tags/boost-1.69.0
+git submodule update --init --recursive
+bootstrap.bat
+b2 --prefix=c:\Development\cpp\boost169 --toolset=msvc variant=release threading=multi address-model=64 install
+```
+## libcurl ###
+Return to your C:\Development\cpp directory and type:
+```
+git clone https://github.com/curl/curl
+cd curl
+git checkout tags/curl-7_64_1
+biuldconf.bat
+mkdir curl-build
+cd curl-build
+cmake -G "Visual Studio 14 2015 Win64" -DCMAKE_USE_OPENSSL=ON -DCURL_DISABLE_FTP=ON -DCURL_DISABLE_LDAP=ON -DCURL_DISABLE_TELNET=ON -DCURL_DISABLE_DICT=ON -DCURL_DISABLE_FILE=ON -DCURL_DISABLE_TFTP=ON -DCURL_DISABLE_LDAPS=ON -DCURL_DISABLE_RTSP=ON -DCURL_DISABLE_POP3=ON -DCURL_DISABLE_IMAP=ON -DCURL_DISABLE_SMTP=ON -DCURL_DISABLE_GOPHER=ON -DCURL_STATICLIB=ON ..\
+cmake --build . --target install --config Release
+```
+### Bitshares Core ###
+Return once again to your C:\Development\cpp directory and type:
+```
+git clone https://github.com/bitshares/bitshares-core
 cd bitshares-core
 git submodule update --init --recursive
+cmake -G "Visual Studio 14 2015 Win64" -DBOOST_ROOT=c:\Development\cpp\boost169 -DCURL_STATICLIB=ON -DCURL_LIBRARY="C:\Program Files\CURL\lib\libcurl_imp.lib" -DCURL_INCLUDE_DIR="C:\Program Files\CURL\include" -DOPENSSL_CONF_SOURCE="C:\Program Files\Common Files\SSL\openssl.cnf"
+cmake --build . --target install --config Release
 ```
-
-* Download CMake
-
-  Download the latest *Win32 Zip* build CMake from
-  http://cmake.org/cmake/resources/software.html (version 2.8.12.2 as of this
-  writing).  Unzip it to your base directory, which will create a directory that
-  looks something like `D:\bitshares\cmake-2.8.12.2-win32-x86`.  Rename this
-  directory to `D:\bitshares\CMake`.
-
-  If you already have CMake installed elsewhere on your system you can use it,
-  but BitShares Core has a few batch files that expect it to be in the base
-  directory's `CMake` subdirectory, so those scripts would need tweaking.
-
-* Boost
-
-   BitShares Core depends on the Boost libraries version 1.57 ~ 1.65.  You can build them from
-   source.
-   * download boost source from http://www.boost.org/users/download/
-   * unzip it to the base directory `D:\bitshares`.
-   * This will create a directory like `D:\bitshares\boost_1_57_0`.
-
-* OpenSSL
-
-   BitShares Core depends on OpenSSL version 1.0.1 or 1.0.2, and you must build this from source.
-    * download OpenSSL source from http://www.openssl.org/source/
-    * Untar it to the base directory `D:\bitshares`
-    * this will create a directory like `D:\bitshares\openssl-1.0.1g`.
-
-At the end of this, your base directory should look like this (directory names will
-be slightly different for the 64bit versions):
-```
-D:\bitshares
-+- bitshares-core
-+- boost_1_57_0
-+- CMake
-+- openssl-1.0.1g
-```
-
-#### Build the library dependencies ####
-
-* Set up environment for building:
-
-```
-D:
-cd D:\bitshares
-notepad setenv_x64.bat
-```
-
-Put this into the notepad window, then save and quit.
-
-```
-@echo off
-set GRA_ROOT=d:\bitshares
-set OPENSSL_ROOT=%GRA_ROOT%\openssl-1.0.1g
-set OPENSSL_ROOT_DIR=%OPENSSL_ROOT%
-set OPENSSL_INCLUDE_DIR=%OPENSSL_ROOT%\include
-set BOOST_ROOT=%GRA_ROOT%\boost_1_57_0
-
-set PATH=%GRA_ROOT%\CMake\bin;%BOOST_ROOT%\lib;%PATH%
-
-echo Setting up VS2013 environment...
-call "%VS120COMNTOOLS%\..\..\VC\vcvarsall.bat" x86_amd64
-```
-
-Then run
-
-```
-setenv_x64.bat
-```
-
-
-* Build OpenSSL DLLs
-```
-D:
-cd D:\bitshares\openssl-1.0.1g
-perl Configure VC-WIN64A --prefix=D:\bitshares\OpenSSL
-ms\do_win64a
-nmake -f ms\ntdll.mak
-nmake -f ms\ntdll.mak install
-```
-
-  This will create the directory `D:\bitshares\OpenSSL` with the libraries, DLLs,
-  and header files.
-
-* Build Boost
-```
-D:
-cd D:\bitshares\boost_1_57_0
-bootstrap
-.\b2.exe address-model=64
-```
-
-#### Build project files for BitShares Core ####
-
-* Run CMake:
-
-```
-D:
-cd D:\bitshares\bitshares-core
-notepad run_cmake_x64.bat
-```
-Put this into the notepad window, then save and quit.
-```
-setlocal
-call "d:\bitshares\setenv_x64.bat"
-cd %GRA_ROOT%
-cmake-gui -G "Visual Studio 12"
-```
-Then run
-```
-run_cmake_x64.bat
-```
-
- This pops up the cmake gui, but if you've used CMake before it will probably be
- showing the wrong data, so fix that:
- * Where is the source code: `D:\bitshares\bitshares-core`
- * Where to build the binaries: `D:\bitshares\x64` 
-
- Then hit **Configure**.  It may ask you to specify a generator for this
- project; if it does, choose **Visual Studio 12 2013 Win64** for 64 bit builds and select **Use default
- native compilers**.  Look through the output and fix any errors.  Then
- hit **Generate**.
-
-
-* Launch *Visual Studio* and load `D:\bitshares\x64\BitShares.sln` 
-* Set Active Configuration to `RelWithDebInfo`, ensure Active Solution platform is `x64` for 64 bit builds
-
-* *Build Solution*
-
-Or you can build the `INSTALL` target in Visual Studio which will
-copy all of the necessary files into your `D:\bitshares\install`
-directory, then copy all of those files to the `bin` directory.
+Upon success, you will have the applications compiled. You can find the application "witness_node" at `c:\Development\cpp\bitshares-core\programs\witness_node\witness_node.exe`. The application "cli_wallet" can be found at `c:\Development\cpp\bitshares-core\programs\cli_wallet\cli_wallet.exe`.
