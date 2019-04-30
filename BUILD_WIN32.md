@@ -64,10 +64,11 @@ b2 --prefix=c:\Development\cpp\boost169 --toolset=msvc variant=release threading
 ```
 Note that if you have more than one msvc compiler installed, you will need to modify the ``toolset`` parameter.
 
-| compiler| toolset parameter |
-| Visual Studio 2015| msvc-14.0 |
-| Visual Studio 2017| msvc-14.1 |
-| Visual Studio 2019| msvc-14.10 |
+compiler| toolset parameter
+---------- | ------------
+Visual Studio 2015| msvc-14.0
+Visual Studio 2017| msvc-14.1
+Visual Studio 2019| msvc-14.10
 
 
 ## libcurl ###
