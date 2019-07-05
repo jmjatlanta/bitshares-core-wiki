@@ -8,7 +8,7 @@ Note that compiling BitShares Core is not required to use the software. Pre-buil
 * 64 bit windows operating system. Windows 10 was used for this document.
 
 ## Visual Studio ##
-Currently, only Microsoft Visual Studio 2015 Update 1 or older can be used to compile BitShares-core. Visual Studio 2015 Update 2 or newer will not work. This is being actively worked on, and should be resolved soon. Until then, you may install Microsoft Visual Studio 2015 Update 1 by following the directions [here](Visual_Studio_2015.md).
+Currently, only Microsoft Visual Studio 2017(15.9) or 2015 Update 1 or older can be used to compile BitShares-core. Visual Studio 2019 or newer will not work. This is being actively worked on.
 
 ## Git ##
 Download Git for Windows [here](https://git-scm.com/download/win).
@@ -16,7 +16,7 @@ Download Git for Windows [here](https://git-scm.com/download/win).
 Installation of git is straightforward. Using the installation options that adds to your PATH environment variable is recommended.
 
 ## CMake ##
-Download the latest cmake and install it. Version 3.14.1 was the latest version when this document was prepared. Find it available for download [here](https://cmake.org/download).
+Download the latest cmake and install it. Version 3.14.2 was the latest version when this document was prepared. Find it available for download [here](https://cmake.org/download).
 
 Install it, and allow it to add to your PATH environment variable.
 
@@ -53,6 +53,8 @@ nmake install
 By default, this will put OpenSSL in your C:\Program Files\OpenSSL directory.
 
 ## Boost ##
+**Note** Boost version 1.70 and above is currently incompatible with BitShares. Use Boost versions 1.69 and below.
+
 Return to your C:\Development\cpp directory ("cd .." should get you there), then clone and compile the boost library by typing the following commands:
 ```
 git clone https://github.com/boostorg/boost
@@ -68,8 +70,6 @@ compiler| toolset parameter
 ---------- | ------------
 Visual Studio 2015| msvc-14.0
 Visual Studio 2017| msvc-14.1
-Visual Studio 2019| msvc-14.10
-
 
 ## libcurl ###
 Return to your C:\Development\cpp directory and type:
@@ -93,3 +93,4 @@ cmake -G "Visual Studio 14 2015 Win64" -DBOOST_ROOT=c:\Development\cpp\boost169 
 cmake --build . --target install --config Release
 ```
 Upon success, you will have the applications compiled. You can find the application "witness_node" at `c:\Development\cpp\bitshares-core\programs\witness_node\witness_node.exe`. The application "cli_wallet" can be found at `c:\Development\cpp\bitshares-core\programs\cli_wallet\cli_wallet.exe`.
+
