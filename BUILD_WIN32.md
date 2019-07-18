@@ -53,7 +53,7 @@ nmake install
 By default, this will put OpenSSL in your C:\Program Files\OpenSSL directory.
 
 ## Boost ##
-**Note** Boost version 1.70 and above is currently incompatible with BitShares. Use Boost versions 1.69 and below.
+**Note** Boost version 1.70 and above is currently incompatible with BitShares. Use Boost versions between 1.58 and 1.69.
 
 Return to your C:\Development\cpp directory ("cd .." should get you there), then clone and compile the boost library by typing the following commands:
 ```
